@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #101828;
+  --primary: #EB242A;
+  --primary-hover: #D31D22;
+  --secondary: #101828;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-secondary: var(--secondary);
+  
+  --font-heading: var(--font-poppins);
+  --font-body: var(--font-plus-jakarta);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-body), sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading), sans-serif;
+    font-weight: 700;
+    color: var(--foreground);
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer components {
+  /* Primary Button Styling */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-3 px-8 py-4 bg-primary text-white font-bold rounded-full transition-all duration-300 hover:bg-primary-hover hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-primary/20;
+    font-family: var(--font-heading);
+  }
+
+  .btn-primary-small {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-white font-bold rounded-full transition-all duration-300 hover:bg-primary-hover hover:scale-[1.02] active:scale-[0.98];
+    font-size: 0.95rem;
+    font-family: var(--font-heading);
+  }
+
+  /* Secondary Button (Outline or dark) */
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-3 px-8 py-4 bg-white border-2 border-primary text-primary font-bold rounded-full transition-all duration-300 hover:bg-primary hover:text-white;
+    font-family: var(--font-heading);
+  }
+
+  /* Badge styling from layout */
+  .badge-white {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-black/5 shadow-sm text-sm font-bold text-[#101828] uppercase tracking-wide;
+  }
+
+  .badge-primary {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary border border-primary/20 text-sm font-bold uppercase tracking-wide;
+  }
+
+  /* Icon inside button consistency */
+  .btn-icon {
+    @apply w-6 h-6 shrink-0;
+  }
+}
+
