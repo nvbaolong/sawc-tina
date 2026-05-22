@@ -11,8 +11,46 @@ export default defineConfig({
   projectId,
   dataset,
   basePath: "/admin",
-  plugins: [structureTool()],
+  plugins: [
+    structureTool({
+      structure: (S) =>
+        S.list()
+          .title("SAWC Content Manager")
+          .items([
+            // Singleton structure for Hero Section - directly loads the document editor
+            S.listItem()
+              .title("Hero Section")
+              .id("hero")
+              .child(
+                S.document()
+                  .schemaType("hero")
+                  .documentId("hero")
+                  .title("Edit Hero Section")
+              ),
+            S.divider(),
+            // Normal document types
+            S.documentTypeListItem("tvShow").title("TV Shows"),
+            S.documentTypeListItem("event").title("Events"),
+          ]),
+    }),
+  ],
   schema: {
     types: schemaTypes,
+    // Hide the singleton from the "Create New Document" menu
+    templates: (prev) => prev.filter((template) => template.id !== "hero"),
+  },
+  document: {
+    // Restrict singleton actions - no delete, no duplicate
+    actions: (prev, { schemaType }) => {
+      if (schemaType === "hero") {
+        return prev.filter(
+          (action) =>
+            action.action === "publish" ||
+            action.action === "discardChanges" ||
+            action.action === "restore"
+        );
+      }
+      return prev;
+    },
   },
 });
