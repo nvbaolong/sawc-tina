@@ -5,7 +5,7 @@ import { Award, Ticket, Percent, Sparkles } from "lucide-react";
 
 export default function FriendsWithBenefits() {
   // Static values with fixed link, price, images and content
-  const badgeText = "FwB";
+  const badgeText = "Premium Membership";
   const titleLine1 = "Friends With";
   const titleLine2 = "Benefits";
   const subtext = "Join the exclusive FWB membership for local deals, priority access, and your ultimate SA guide.";
