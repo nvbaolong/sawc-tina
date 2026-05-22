@@ -2,7 +2,6 @@ import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
 import { presentationTool } from "sanity/presentation";
 import { schemaTypes } from "./schemas";
-import PreviewIframe from "./components/PreviewIframe";
 
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "ihtjlqej";
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || "production";
@@ -15,16 +14,6 @@ export default defineConfig({
   basePath: "/admin",
   plugins: [
     structureTool({
-      defaultDocumentNode: (S, { schemaType }) => {
-        // Show Preview tab for documents that have frontend representations
-        if (["hero", "tvShow", "event"].includes(schemaType)) {
-          return S.document().views([
-            S.view.form(),
-            S.view.component(PreviewIframe).title("Preview"),
-          ]);
-        }
-        return S.document().views([S.view.form()]);
-      },
       structure: (S) =>
         S.list()
           .title("SAWC Content Manager")
@@ -38,10 +27,6 @@ export default defineConfig({
                   .schemaType("hero")
                   .documentId("hero")
                   .title("Edit Hero Section")
-                  .views([
-                    S.view.form(),
-                    S.view.component(PreviewIframe).title("Preview"),
-                  ])
               ),
             S.divider(),
             S.documentTypeListItem("tvShow").title("TV Shows"),
