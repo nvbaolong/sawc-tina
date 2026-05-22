@@ -54,29 +54,43 @@ export default function Contact() {
             </h2>
 
             <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+              {/* Row 1: First Name + Last Name */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-[14px] font-bold text-[#494D4D]">
-                    Your name*
+                    First Name*
                   </label>
                   <input
                     type="text"
-                    placeholder="Enter name"
+                    placeholder="Enter first name"
                     className="w-full bg-[#E8E8E8] border-none rounded-[10px] px-6 py-4 outline-none transition-all font-body text-[#131515] placeholder:text-[#131515]/50"
                   />
                 </div>
                 <div className="space-y-2">
                   <label className="text-[14px] font-bold text-[#494D4D]">
-                    Subject
+                    Last Name*
                   </label>
                   <input
                     type="text"
-                    placeholder="Topic of your request"
+                    placeholder="Enter last name"
                     className="w-full bg-[#E8E8E8] border-none rounded-[10px] px-6 py-4 outline-none transition-all font-body text-[#131515] placeholder:text-[#131515]/50"
                   />
                 </div>
               </div>
 
+              {/* Row 2: Subject */}
+              <div className="space-y-2">
+                <label className="text-[14px] font-bold text-[#494D4D]">
+                  Subject
+                </label>
+                <input
+                  type="text"
+                  placeholder="Topic of your request"
+                  className="w-full bg-[#E8E8E8] border-none rounded-[10px] px-6 py-4 outline-none transition-all font-body text-[#131515] placeholder:text-[#131515]/50"
+                />
+              </div>
+
+              {/* Row 3: Email */}
               <div className="space-y-2">
                 <label className="text-[14px] font-bold text-[#494D4D]">
                   Email address*
@@ -88,6 +102,7 @@ export default function Contact() {
                 />
               </div>
 
+              {/* Row 4: Message */}
               <div className="space-y-2">
                 <label className="text-[14px] font-bold text-[#494D4D]">
                   Message
