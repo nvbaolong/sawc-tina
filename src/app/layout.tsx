@@ -39,18 +39,15 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+import VercelDeployBadge from "@/components/VercelDeployBadge";
+
   return (
     <html lang="en">
       <body
         className={`${poppins.variable} ${plusJakartaSans.variable} font-body antialiased`}
       >
         {children}
+        <VercelDeployBadge />
       </body>
     </html>
   );
-}
