@@ -9,7 +9,7 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import { promises as fs } from "fs";
 import path from "path";
-import type { HeroContent, TvShow, Event, FwbContent } from "@/types";
+import type { HeroContent, TvShow, Event } from "@/types";
 
 export const revalidate = 0;
 
@@ -45,10 +45,9 @@ async function readJson<T>(filePath: string): Promise<T | null> {
 }
 
 export default async function Home() {
-  const [heroData, tvShows, fwbData, events] = await Promise.all([
+  const [heroData, tvShows, events] = await Promise.all([
     readJson<HeroContent>("content/hero/index.json"),
     readJsonDir<TvShow>("content/tv-shows"),
-    readJson<FwbContent>("content/fwb/index.json"),
     readJsonDir<Event>("content/events"),
   ]);
 
@@ -57,7 +56,7 @@ export default async function Home() {
       <Navbar />
       <Hero initialData={heroData} />
       <BestBits initialTvShows={tvShows} />
-      <FriendsWithBenefits initialData={fwbData} />
+      <FriendsWithBenefits />
       <CowsForCambodia />
       <CosisChoir />
       <Events initialEvents={events} />

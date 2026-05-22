@@ -15,24 +15,6 @@ export const HeroPartsFragmentDoc = gql`
   videoUrl
 }
     `;
-export const FriendsWithBenefitsPartsFragmentDoc = gql`
-    fragment FriendsWithBenefitsParts on FriendsWithBenefits {
-  __typename
-  badgeText
-  titleLine1
-  titleLine2
-  subtext
-  buttonText
-  buttonLink
-  price
-  backgroundImage
-  cosiImage
-  card1Title
-  card1Description
-  card2Title
-  card2Description
-}
-    `;
 export const TvShowPartsFragmentDoc = gql`
     fragment TvShowParts on TvShow {
   __typename
@@ -117,63 +99,6 @@ export const HeroConnectionDocument = gql`
   }
 }
     ${HeroPartsFragmentDoc}`;
-export const FriendsWithBenefitsDocument = gql`
-    query friendsWithBenefits($relativePath: String!) {
-  friendsWithBenefits(relativePath: $relativePath) {
-    ... on Document {
-      _sys {
-        filename
-        basename
-        hasReferences
-        breadcrumbs
-        path
-        relativePath
-        extension
-      }
-      id
-    }
-    ...FriendsWithBenefitsParts
-  }
-}
-    ${FriendsWithBenefitsPartsFragmentDoc}`;
-export const FriendsWithBenefitsConnectionDocument = gql`
-    query friendsWithBenefitsConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: FriendsWithBenefitsFilter) {
-  friendsWithBenefitsConnection(
-    before: $before
-    after: $after
-    first: $first
-    last: $last
-    sort: $sort
-    filter: $filter
-  ) {
-    pageInfo {
-      hasPreviousPage
-      hasNextPage
-      startCursor
-      endCursor
-    }
-    totalCount
-    edges {
-      cursor
-      node {
-        ... on Document {
-          _sys {
-            filename
-            basename
-            hasReferences
-            breadcrumbs
-            path
-            relativePath
-            extension
-          }
-          id
-        }
-        ...FriendsWithBenefitsParts
-      }
-    }
-  }
-}
-    ${FriendsWithBenefitsPartsFragmentDoc}`;
 export const TvShowDocument = gql`
     query tvShow($relativePath: String!) {
   tvShow(relativePath: $relativePath) {
@@ -295,12 +220,6 @@ export function getSdk(requester) {
     },
     heroConnection(variables, options) {
       return requester(HeroConnectionDocument, variables, options);
-    },
-    friendsWithBenefits(variables, options) {
-      return requester(FriendsWithBenefitsDocument, variables, options);
-    },
-    friendsWithBenefitsConnection(variables, options) {
-      return requester(FriendsWithBenefitsConnectionDocument, variables, options);
     },
     tvShow(variables, options) {
       return requester(TvShowDocument, variables, options);

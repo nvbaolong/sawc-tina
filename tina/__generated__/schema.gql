@@ -56,8 +56,6 @@ type Query {
   document(collection: String, relativePath: String): DocumentNode!
   hero(relativePath: String): Hero!
   heroConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: HeroFilter): HeroConnection!
-  friendsWithBenefits(relativePath: String): FriendsWithBenefits!
-  friendsWithBenefitsConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: FriendsWithBenefitsFilter): FriendsWithBenefitsConnection!
   tvShow(relativePath: String): TvShow!
   tvShowConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: TvShowFilter): TvShowConnection!
   event(relativePath: String): Event!
@@ -66,7 +64,6 @@ type Query {
 
 input DocumentFilter {
   hero: HeroFilter
-  friendsWithBenefits: FriendsWithBenefitsFilter
   tvShow: TvShowFilter
   event: EventFilter
 }
@@ -94,7 +91,7 @@ type Collection {
   documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter, folder: String): DocumentConnection!
 }
 
-union DocumentNode = Hero | FriendsWithBenefits | TvShow | Event | Folder
+union DocumentNode = Hero | TvShow | Event | Folder
 
 type Hero implements Node & Document {
   badgeText: String
@@ -138,52 +135,6 @@ type HeroConnection implements Connection {
   pageInfo: PageInfo!
   totalCount: Float!
   edges: [HeroConnectionEdges]
-}
-
-type FriendsWithBenefits implements Node & Document {
-  badgeText: String
-  titleLine1: String
-  titleLine2: String
-  subtext: String
-  buttonText: String
-  buttonLink: String
-  price: String
-  backgroundImage: String
-  cosiImage: String
-  card1Title: String
-  card1Description: String
-  card2Title: String
-  card2Description: String
-  id: ID!
-  _sys: SystemInfo!
-  _values: JSON!
-}
-
-input FriendsWithBenefitsFilter {
-  badgeText: StringFilter
-  titleLine1: StringFilter
-  titleLine2: StringFilter
-  subtext: StringFilter
-  buttonText: StringFilter
-  buttonLink: StringFilter
-  price: StringFilter
-  backgroundImage: ImageFilter
-  cosiImage: ImageFilter
-  card1Title: StringFilter
-  card1Description: StringFilter
-  card2Title: StringFilter
-  card2Description: StringFilter
-}
-
-type FriendsWithBenefitsConnectionEdges {
-  cursor: String!
-  node: FriendsWithBenefits
-}
-
-type FriendsWithBenefitsConnection implements Connection {
-  pageInfo: PageInfo!
-  totalCount: Float!
-  edges: [FriendsWithBenefitsConnectionEdges]
 }
 
 type TvShow implements Node & Document {
@@ -286,8 +237,6 @@ type Mutation {
   createFolder(collection: String, relativePath: String!): DocumentNode!
   updateHero(relativePath: String!, params: HeroMutation!): Hero!
   createHero(relativePath: String!, params: HeroMutation!): Hero!
-  updateFriendsWithBenefits(relativePath: String!, params: FriendsWithBenefitsMutation!): FriendsWithBenefits!
-  createFriendsWithBenefits(relativePath: String!, params: FriendsWithBenefitsMutation!): FriendsWithBenefits!
   updateTvShow(relativePath: String!, params: TvShowMutation!): TvShow!
   createTvShow(relativePath: String!, params: TvShowMutation!): TvShow!
   updateEvent(relativePath: String!, params: EventMutation!): Event!
@@ -296,7 +245,6 @@ type Mutation {
 
 input DocumentUpdateMutation {
   hero: HeroMutation
-  friendsWithBenefits: FriendsWithBenefitsMutation
   tvShow: TvShowMutation
   event: EventMutation
   relativePath: String
@@ -304,7 +252,6 @@ input DocumentUpdateMutation {
 
 input DocumentMutation {
   hero: HeroMutation
-  friendsWithBenefits: FriendsWithBenefitsMutation
   tvShow: TvShowMutation
   event: EventMutation
 }
@@ -315,22 +262,6 @@ input HeroMutation {
   subtext: String
   backgroundImage: String
   videoUrl: String
-}
-
-input FriendsWithBenefitsMutation {
-  badgeText: String
-  titleLine1: String
-  titleLine2: String
-  subtext: String
-  buttonText: String
-  buttonLink: String
-  price: String
-  backgroundImage: String
-  cosiImage: String
-  card1Title: String
-  card1Description: String
-  card2Title: String
-  card2Description: String
 }
 
 input TvShowMutation {

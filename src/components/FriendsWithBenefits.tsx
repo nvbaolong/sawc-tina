@@ -2,29 +2,22 @@
 
 import { motion } from "framer-motion";
 import { Award, Ticket, Percent, Sparkles } from "lucide-react";
-import type { FwbContent } from "@/types";
 
-interface FriendsWithBenefitsProps {
-  initialData?: FwbContent | null;
-}
-
-export default function FriendsWithBenefits({ initialData }: FriendsWithBenefitsProps) {
-  const data = initialData || {};
-  
-  // Default values fallback
-  const badgeText = data.badgeText || "Special Offer";
-  const titleLine1 = data.titleLine1 || "Friends With";
-  const titleLine2 = data.titleLine2 || "Benefits";
-  const subtext = data.subtext || "Join the exclusive FWB membership for local deals, priority access, and your ultimate SA guide.";
-  const buttonText = data.buttonText || "JOIN NOW";
-  const buttonLink = data.buttonLink || "#join-membership";
-  const price = data.price || "$4.95";
-  const backgroundImage = data.backgroundImage || "/assets/FwB.png";
-  const cosiImage = data.cosiImage || "/assets/014A1782_1.png";
-  const card1Title = data.card1Title || "Instant Rewards";
-  const card1Description = data.card1Description || "Grab \"Buy 1 Get 1 Free\" drinks and huge discounts at SA’s best pubs, wineries, and shops.";
-  const card2Title = data.card2Title || "Be First in Line";
-  const card2Description = data.card2Description || "Get priority booking for Cosi’s Choir and special events before they sell out!";
+export default function FriendsWithBenefits() {
+  // Static values with fixed link, price, images and content
+  const badgeText = "Special Offer";
+  const titleLine1 = "Friends With";
+  const titleLine2 = "Benefits";
+  const subtext = "Join the exclusive FWB membership for local deals, priority access, and your ultimate SA guide.";
+  const buttonText = "JOIN NOW";
+  const buttonLink = "https://cosisfriendswithbenefits.com.au";
+  const price = "$10";
+  const backgroundImage = "/uploads/assets/FwB.png";
+  const cosiImage = "/uploads/assets/014A1782_1.png";
+  const card1Title = "Instant Rewards";
+  const card1Description = "Grab \"Buy 1 Get 1 Free\" drinks and huge discounts at SA’s best pubs, wineries, and shops.";
+  const card2Title = "Be First in Line";
+  const card2Description = "Get priority booking for Cosi’s Choir and special events before they sell out!";
 
   return (
     <section
@@ -84,6 +77,8 @@ export default function FriendsWithBenefits({ initialData }: FriendsWithBenefits
             >
               <a
                 href={buttonLink}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn-primary px-8 py-4 flex items-center justify-center gap-3 shrink-0"
               >
                 <span>{buttonText}</span>
@@ -164,3 +159,4 @@ export default function FriendsWithBenefits({ initialData }: FriendsWithBenefits
     </section>
   );
 }
+

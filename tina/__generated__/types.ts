@@ -84,8 +84,6 @@ export type Query = {
   document: DocumentNode;
   hero: Hero;
   heroConnection: HeroConnection;
-  friendsWithBenefits: FriendsWithBenefits;
-  friendsWithBenefitsConnection: FriendsWithBenefitsConnection;
   tvShow: TvShow;
   tvShowConnection: TvShowConnection;
   event: Event;
@@ -129,21 +127,6 @@ export type QueryHeroConnectionArgs = {
 };
 
 
-export type QueryFriendsWithBenefitsArgs = {
-  relativePath?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type QueryFriendsWithBenefitsConnectionArgs = {
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<FriendsWithBenefitsFilter>;
-};
-
-
 export type QueryTvShowArgs = {
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
@@ -175,7 +158,6 @@ export type QueryEventConnectionArgs = {
 
 export type DocumentFilter = {
   hero?: InputMaybe<HeroFilter>;
-  friendsWithBenefits?: InputMaybe<FriendsWithBenefitsFilter>;
   tvShow?: InputMaybe<TvShowFilter>;
   event?: InputMaybe<EventFilter>;
 };
@@ -217,7 +199,7 @@ export type CollectionDocumentsArgs = {
   folder?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type DocumentNode = Hero | FriendsWithBenefits | TvShow | Event | Folder;
+export type DocumentNode = Hero | TvShow | Event | Folder;
 
 export type Hero = Node & Document & {
   __typename?: 'Hero';
@@ -264,55 +246,6 @@ export type HeroConnection = Connection & {
   pageInfo: PageInfo;
   totalCount: Scalars['Float']['output'];
   edges?: Maybe<Array<Maybe<HeroConnectionEdges>>>;
-};
-
-export type FriendsWithBenefits = Node & Document & {
-  __typename?: 'FriendsWithBenefits';
-  badgeText?: Maybe<Scalars['String']['output']>;
-  titleLine1?: Maybe<Scalars['String']['output']>;
-  titleLine2?: Maybe<Scalars['String']['output']>;
-  subtext?: Maybe<Scalars['String']['output']>;
-  buttonText?: Maybe<Scalars['String']['output']>;
-  buttonLink?: Maybe<Scalars['String']['output']>;
-  price?: Maybe<Scalars['String']['output']>;
-  backgroundImage?: Maybe<Scalars['String']['output']>;
-  cosiImage?: Maybe<Scalars['String']['output']>;
-  card1Title?: Maybe<Scalars['String']['output']>;
-  card1Description?: Maybe<Scalars['String']['output']>;
-  card2Title?: Maybe<Scalars['String']['output']>;
-  card2Description?: Maybe<Scalars['String']['output']>;
-  id: Scalars['ID']['output'];
-  _sys: SystemInfo;
-  _values: Scalars['JSON']['output'];
-};
-
-export type FriendsWithBenefitsFilter = {
-  badgeText?: InputMaybe<StringFilter>;
-  titleLine1?: InputMaybe<StringFilter>;
-  titleLine2?: InputMaybe<StringFilter>;
-  subtext?: InputMaybe<StringFilter>;
-  buttonText?: InputMaybe<StringFilter>;
-  buttonLink?: InputMaybe<StringFilter>;
-  price?: InputMaybe<StringFilter>;
-  backgroundImage?: InputMaybe<ImageFilter>;
-  cosiImage?: InputMaybe<ImageFilter>;
-  card1Title?: InputMaybe<StringFilter>;
-  card1Description?: InputMaybe<StringFilter>;
-  card2Title?: InputMaybe<StringFilter>;
-  card2Description?: InputMaybe<StringFilter>;
-};
-
-export type FriendsWithBenefitsConnectionEdges = {
-  __typename?: 'FriendsWithBenefitsConnectionEdges';
-  cursor: Scalars['String']['output'];
-  node?: Maybe<FriendsWithBenefits>;
-};
-
-export type FriendsWithBenefitsConnection = Connection & {
-  __typename?: 'FriendsWithBenefitsConnection';
-  pageInfo: PageInfo;
-  totalCount: Scalars['Float']['output'];
-  edges?: Maybe<Array<Maybe<FriendsWithBenefitsConnectionEdges>>>;
 };
 
 export type TvShow = Node & Document & {
@@ -422,8 +355,6 @@ export type Mutation = {
   createFolder: DocumentNode;
   updateHero: Hero;
   createHero: Hero;
-  updateFriendsWithBenefits: FriendsWithBenefits;
-  createFriendsWithBenefits: FriendsWithBenefits;
   updateTvShow: TvShow;
   createTvShow: TvShow;
   updateEvent: Event;
@@ -476,18 +407,6 @@ export type MutationCreateHeroArgs = {
 };
 
 
-export type MutationUpdateFriendsWithBenefitsArgs = {
-  relativePath: Scalars['String']['input'];
-  params: FriendsWithBenefitsMutation;
-};
-
-
-export type MutationCreateFriendsWithBenefitsArgs = {
-  relativePath: Scalars['String']['input'];
-  params: FriendsWithBenefitsMutation;
-};
-
-
 export type MutationUpdateTvShowArgs = {
   relativePath: Scalars['String']['input'];
   params: TvShowMutation;
@@ -513,7 +432,6 @@ export type MutationCreateEventArgs = {
 
 export type DocumentUpdateMutation = {
   hero?: InputMaybe<HeroMutation>;
-  friendsWithBenefits?: InputMaybe<FriendsWithBenefitsMutation>;
   tvShow?: InputMaybe<TvShowMutation>;
   event?: InputMaybe<EventMutation>;
   relativePath?: InputMaybe<Scalars['String']['input']>;
@@ -521,7 +439,6 @@ export type DocumentUpdateMutation = {
 
 export type DocumentMutation = {
   hero?: InputMaybe<HeroMutation>;
-  friendsWithBenefits?: InputMaybe<FriendsWithBenefitsMutation>;
   tvShow?: InputMaybe<TvShowMutation>;
   event?: InputMaybe<EventMutation>;
 };
@@ -532,22 +449,6 @@ export type HeroMutation = {
   subtext?: InputMaybe<Scalars['String']['input']>;
   backgroundImage?: InputMaybe<Scalars['String']['input']>;
   videoUrl?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type FriendsWithBenefitsMutation = {
-  badgeText?: InputMaybe<Scalars['String']['input']>;
-  titleLine1?: InputMaybe<Scalars['String']['input']>;
-  titleLine2?: InputMaybe<Scalars['String']['input']>;
-  subtext?: InputMaybe<Scalars['String']['input']>;
-  buttonText?: InputMaybe<Scalars['String']['input']>;
-  buttonLink?: InputMaybe<Scalars['String']['input']>;
-  price?: InputMaybe<Scalars['String']['input']>;
-  backgroundImage?: InputMaybe<Scalars['String']['input']>;
-  cosiImage?: InputMaybe<Scalars['String']['input']>;
-  card1Title?: InputMaybe<Scalars['String']['input']>;
-  card1Description?: InputMaybe<Scalars['String']['input']>;
-  card2Title?: InputMaybe<Scalars['String']['input']>;
-  card2Description?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type TvShowMutation = {
@@ -575,8 +476,6 @@ export type EventMutation = {
 
 export type HeroPartsFragment = { __typename: 'Hero', badgeText?: string | null, mainHeading?: string | null, subtext?: string | null, backgroundImage?: string | null, videoUrl?: string | null };
 
-export type FriendsWithBenefitsPartsFragment = { __typename: 'FriendsWithBenefits', badgeText?: string | null, titleLine1?: string | null, titleLine2?: string | null, subtext?: string | null, buttonText?: string | null, buttonLink?: string | null, price?: string | null, backgroundImage?: string | null, cosiImage?: string | null, card1Title?: string | null, card1Description?: string | null, card2Title?: string | null, card2Description?: string | null };
-
 export type TvShowPartsFragment = { __typename: 'TvShow', title: string, description?: string | null, image?: string | null, airDate?: string | null, videoUrl?: string | null, category?: string | null, orderRank?: number | null };
 
 export type EventPartsFragment = { __typename: 'Event', title: string, date: string, venue?: string | null, time?: string | null, price?: string | null, type?: string | null, shortDescription?: string | null, coverImage?: string | null, bookingUrl?: string | null, orderRank?: number | null };
@@ -599,25 +498,6 @@ export type HeroConnectionQueryVariables = Exact<{
 
 
 export type HeroConnectionQuery = { __typename?: 'Query', heroConnection: { __typename?: 'HeroConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'HeroConnectionEdges', cursor: string, node?: { __typename: 'Hero', id: string, badgeText?: string | null, mainHeading?: string | null, subtext?: string | null, backgroundImage?: string | null, videoUrl?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
-
-export type FriendsWithBenefitsQueryVariables = Exact<{
-  relativePath: Scalars['String']['input'];
-}>;
-
-
-export type FriendsWithBenefitsQuery = { __typename?: 'Query', friendsWithBenefits: { __typename: 'FriendsWithBenefits', id: string, badgeText?: string | null, titleLine1?: string | null, titleLine2?: string | null, subtext?: string | null, buttonText?: string | null, buttonLink?: string | null, price?: string | null, backgroundImage?: string | null, cosiImage?: string | null, card1Title?: string | null, card1Description?: string | null, card2Title?: string | null, card2Description?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
-
-export type FriendsWithBenefitsConnectionQueryVariables = Exact<{
-  before?: InputMaybe<Scalars['String']['input']>;
-  after?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Float']['input']>;
-  last?: InputMaybe<Scalars['Float']['input']>;
-  sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<FriendsWithBenefitsFilter>;
-}>;
-
-
-export type FriendsWithBenefitsConnectionQuery = { __typename?: 'Query', friendsWithBenefitsConnection: { __typename?: 'FriendsWithBenefitsConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'FriendsWithBenefitsConnectionEdges', cursor: string, node?: { __typename: 'FriendsWithBenefits', id: string, badgeText?: string | null, titleLine1?: string | null, titleLine2?: string | null, subtext?: string | null, buttonText?: string | null, buttonLink?: string | null, price?: string | null, backgroundImage?: string | null, cosiImage?: string | null, card1Title?: string | null, card1Description?: string | null, card2Title?: string | null, card2Description?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export type TvShowQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -665,24 +545,6 @@ export const HeroPartsFragmentDoc = gql`
   subtext
   backgroundImage
   videoUrl
-}
-    `;
-export const FriendsWithBenefitsPartsFragmentDoc = gql`
-    fragment FriendsWithBenefitsParts on FriendsWithBenefits {
-  __typename
-  badgeText
-  titleLine1
-  titleLine2
-  subtext
-  buttonText
-  buttonLink
-  price
-  backgroundImage
-  cosiImage
-  card1Title
-  card1Description
-  card2Title
-  card2Description
 }
     `;
 export const TvShowPartsFragmentDoc = gql`
@@ -769,63 +631,6 @@ export const HeroConnectionDocument = gql`
   }
 }
     ${HeroPartsFragmentDoc}`;
-export const FriendsWithBenefitsDocument = gql`
-    query friendsWithBenefits($relativePath: String!) {
-  friendsWithBenefits(relativePath: $relativePath) {
-    ... on Document {
-      _sys {
-        filename
-        basename
-        hasReferences
-        breadcrumbs
-        path
-        relativePath
-        extension
-      }
-      id
-    }
-    ...FriendsWithBenefitsParts
-  }
-}
-    ${FriendsWithBenefitsPartsFragmentDoc}`;
-export const FriendsWithBenefitsConnectionDocument = gql`
-    query friendsWithBenefitsConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: FriendsWithBenefitsFilter) {
-  friendsWithBenefitsConnection(
-    before: $before
-    after: $after
-    first: $first
-    last: $last
-    sort: $sort
-    filter: $filter
-  ) {
-    pageInfo {
-      hasPreviousPage
-      hasNextPage
-      startCursor
-      endCursor
-    }
-    totalCount
-    edges {
-      cursor
-      node {
-        ... on Document {
-          _sys {
-            filename
-            basename
-            hasReferences
-            breadcrumbs
-            path
-            relativePath
-            extension
-          }
-          id
-        }
-        ...FriendsWithBenefitsParts
-      }
-    }
-  }
-}
-    ${FriendsWithBenefitsPartsFragmentDoc}`;
 export const TvShowDocument = gql`
     query tvShow($relativePath: String!) {
   tvShow(relativePath: $relativePath) {
@@ -948,12 +753,6 @@ export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) 
       },
     heroConnection(variables?: HeroConnectionQueryVariables, options?: C): Promise<{data: HeroConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: HeroConnectionQueryVariables, query: string}> {
         return requester<{data: HeroConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: HeroConnectionQueryVariables, query: string}, HeroConnectionQueryVariables>(HeroConnectionDocument, variables, options);
-      },
-    friendsWithBenefits(variables: FriendsWithBenefitsQueryVariables, options?: C): Promise<{data: FriendsWithBenefitsQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: FriendsWithBenefitsQueryVariables, query: string}> {
-        return requester<{data: FriendsWithBenefitsQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: FriendsWithBenefitsQueryVariables, query: string}, FriendsWithBenefitsQueryVariables>(FriendsWithBenefitsDocument, variables, options);
-      },
-    friendsWithBenefitsConnection(variables?: FriendsWithBenefitsConnectionQueryVariables, options?: C): Promise<{data: FriendsWithBenefitsConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: FriendsWithBenefitsConnectionQueryVariables, query: string}> {
-        return requester<{data: FriendsWithBenefitsConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: FriendsWithBenefitsConnectionQueryVariables, query: string}, FriendsWithBenefitsConnectionQueryVariables>(FriendsWithBenefitsConnectionDocument, variables, options);
       },
     tvShow(variables: TvShowQueryVariables, options?: C): Promise<{data: TvShowQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: TvShowQueryVariables, query: string}> {
         return requester<{data: TvShowQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: TvShowQueryVariables, query: string}, TvShowQueryVariables>(TvShowDocument, variables, options);
