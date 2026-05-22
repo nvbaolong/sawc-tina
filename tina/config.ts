@@ -27,6 +27,7 @@ export default defineConfig({
         ui: {
           allowedActions: { create: false, delete: false },
           global: true,
+          router: () => "/",
         },
         fields: [
           {
@@ -75,6 +76,9 @@ export default defineConfig({
         label: "TV Show Episodes",
         path: "content/tv-shows",
         format: "json",
+        ui: {
+          router: () => "/",
+        },
         fields: [
           {
             type: "string",
@@ -130,6 +134,9 @@ export default defineConfig({
         label: "Events",
         path: "content/events",
         format: "json",
+        ui: {
+          router: () => "/",
+        },
         fields: [
           {
             type: "string",

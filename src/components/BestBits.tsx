@@ -9,6 +9,7 @@ import {
   Plain,
 } from "@solar-icons/react";
 import { motion } from "framer-motion";
+import { tinaField } from "tinacms/dist/react";
 import type { TvShow } from "@/types";
 
 const STATIC_EPISODES = [
@@ -267,6 +268,7 @@ export default function BestBits({ initialTvShows }: BestBitsProps) {
               <div
                 key={show._sys?.filename || show.title}
                 style={styles as React.CSSProperties}
+                data-tina-field={tinaField(show as any)}
                 className={`absolute w-[280px] md:w-[350px] aspect-[3/4.2] rounded-[2.5rem] overflow-hidden group shadow-2xl border border-white/20 transform-gpu`}
                 onClick={() => {
                   let diff = index - realActiveIndex;
@@ -282,6 +284,7 @@ export default function BestBits({ initialTvShows }: BestBitsProps) {
                   <img
                     src={imageUrl}
                     alt={show.title}
+                    data-tina-field={tinaField(show as any, 'image')}
                     className={`absolute inset-0 w-full h-full object-cover transition-all duration-1000 ${isActive ? "scale-105" : "scale-110 blur-[2px] grayscale-[0.3]"}`}
                   />
                 )}
@@ -293,10 +296,10 @@ export default function BestBits({ initialTvShows }: BestBitsProps) {
                   <div
                     className={`flex items-center justify-between mb-2 transition-all duration-700 ${isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
                   >
-                    <span className="text-[14px] text-white font-bold tracking-wider uppercase">
+                    <span className="text-[14px] text-white font-bold tracking-wider uppercase" data-tina-field={tinaField(show as any, 'category')}>
                       {show.category || (show as any).episodeLabel || "LATEST"}
                     </span>
-                    <span className="text-[14px] text-white font-bold tracking-wider">
+                    <span className="text-[14px] text-white font-bold tracking-wider" data-tina-field={tinaField(show as any, 'airDate')}>
                       {show.airDate
                         ? new Date(show.airDate).toLocaleDateString("en-GB", {
                             day: "2-digit",
@@ -309,6 +312,7 @@ export default function BestBits({ initialTvShows }: BestBitsProps) {
 
                   <p
                     className={`text-[#E5E5E5] font-body text-xs font-medium leading-[1.6] mb-6 line-clamp-3 transition-all duration-700 ${isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+                    data-tina-field={tinaField(show as any, 'description')}
                   >
                     {show.description}
                   </p>
