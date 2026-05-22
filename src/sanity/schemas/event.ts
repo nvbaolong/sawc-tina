@@ -23,12 +23,6 @@ export const event = defineType({
       type: "string",
     }),
     defineField({
-      name: "time",
-      title: "Time (display)",
-      type: "string",
-      description: "e.g. 7:00 PM – 9:30 PM",
-    }),
-    defineField({
       name: "price",
       title: "Price",
       type: "string",

@@ -12,8 +12,8 @@ export default function FriendsWithBenefits() {
   const buttonText = "JOIN NOW";
   const buttonLink = "https://cosisfriendswithbenefits.com.au";
   const price = "$10";
-  const backgroundImage = "/assets/FwB.png";
-  const cosiImage = "/assets/014A1782_1.png";
+  const backgroundImage = "/assets/FwB_optimized.jpg";
+  const cosiImage = "/assets/014A1782_1_optimized.png";
   const card1Title = "Instant Rewards";
   const card1Description = "Redeem an offer from one of over 100 retail partners through the app.";
   const card2Title = "Be First in Line";
@@ -22,9 +22,16 @@ export default function FriendsWithBenefits() {
   return (
     <section
       id="fwb"
-      className="pt-20 pb-0 lg:pt-24 lg:pb-0 bg-cover bg-center bg-no-repeat relative overflow-hidden"
-      style={{ backgroundImage: `url('${backgroundImage}')` }}
+      className="pt-20 pb-0 lg:pt-24 lg:pb-0 relative overflow-hidden"
     >
+      {/* Background Image absolute container for direct crisp loading */}
+      <div className="absolute inset-0 z-0 select-none pointer-events-none">
+        <img
+          src={backgroundImage}
+          alt="Friends With Benefits Background"
+          className="absolute inset-0 w-full h-full object-cover object-center"
+        />
+      </div>
 
       <div className="container mx-auto px-8 relative z-10 max-w-[1440px]">
         <div className="flex flex-col lg:flex-row items-stretch gap-16 lg:gap-24">
@@ -106,6 +113,7 @@ export default function FriendsWithBenefits() {
                 <img
                   src={cosiImage}
                   alt="Cosi Costello Smiling"
+                  loading="eager"
                   className="w-full h-auto object-contain block pointer-events-none"
                 />
               </motion.div>

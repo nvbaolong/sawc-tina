@@ -21,10 +21,14 @@ export default function Hero({ initialData }: HeroProps) {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
 
   // Default values supporting both raw local strings and Sanity image references
-  let bgImage = "/assets/bg.png";
+  let bgImage = "/assets/bg_optimized.jpg";
   if (initialData?.backgroundImage) {
     if (typeof initialData.backgroundImage === "string") {
-      bgImage = initialData.backgroundImage;
+      if (initialData.backgroundImage === "/assets/bg.png") {
+        bgImage = "/assets/bg_optimized.jpg";
+      } else {
+        bgImage = initialData.backgroundImage;
+      }
     } else {
       bgImage = urlFor(initialData.backgroundImage)?.url() || bgImage;
     }
@@ -73,12 +77,10 @@ export default function Hero({ initialData }: HeroProps) {
     >
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
-        <Image
+        <img
           src={bgImage}
           alt="Hero Background"
-          fill
-          className="object-cover object-[65%_center] sm:object-center"
-          priority
+          className="absolute inset-0 w-full h-full object-cover object-[65%_center] sm:object-center pointer-events-none"
         />
         <div
           className="absolute inset-0 z-10"

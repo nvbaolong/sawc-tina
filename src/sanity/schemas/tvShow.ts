@@ -37,15 +37,9 @@ export const tvShow = defineType({
     }),
     defineField({
       name: "category",
-      title: "Category",
+      title: "Category / Season (e.g. Season 11)",
       type: "string",
-      options: {
-        list: [
-          { value: "full-episode", title: "Full Episode" },
-          { value: "clip", title: "Clip" },
-          { value: "behind-the-scenes", title: "Behind the Scenes" },
-        ],
-      },
+      description: "Label for the card's top badge (e.g. Season 11, EP 01, Clip)",
     }),
     defineField({
       name: "orderRank",

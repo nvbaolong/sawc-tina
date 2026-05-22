@@ -14,7 +14,7 @@ export interface TvShow {
   image?: any
   airDate?: string
   videoUrl?: string
-  category?: 'full-episode' | 'clip' | 'behind-the-scenes'
+  category?: string
   orderRank?: number
 }
 
@@ -24,7 +24,6 @@ export interface Event {
   title: string
   date: string
   venue?: string
-  time?: string
   price?: string
   type?: string
   shortDescription?: string
