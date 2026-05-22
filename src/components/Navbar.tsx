@@ -81,7 +81,7 @@ export default function Navbar() {
       >
         <div className="container mx-auto flex items-center justify-between px-6 md:px-8">
           {/* Logo */}
-          <div className="flex items-center">
+          <Link href="#home" className="flex items-center hover:opacity-90 transition-opacity">
             <Image
               src="/assets/SAWC logo.svg"
               alt="SAWC Logo"
@@ -94,7 +94,7 @@ export default function Navbar() {
               }`}
               priority
             />
-          </div>
+          </Link>
 
           {/* Desktop Links */}
           <div className="hidden lg:flex items-center gap-6 lg:gap-10">

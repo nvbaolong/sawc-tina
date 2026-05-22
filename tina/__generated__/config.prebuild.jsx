@@ -19,7 +19,7 @@ var config_default = defineConfig({
       // ─── HERO ──────────────────────────────────────────────────────────────
       {
         name: "hero",
-        label: "Hero Section",
+        label: "Trang ch\u1EE7 (\u0110\u1EA7u trang)",
         path: "content/hero",
         format: "json",
         ui: {
@@ -69,7 +69,7 @@ var config_default = defineConfig({
       // ─── TV SHOWS ──────────────────────────────────────────────────────────
       {
         name: "tvShow",
-        label: "TV Show Episodes",
+        label: "T\u1EADp phim TV Show",
         path: "content/tv-shows",
         format: "json",
         ui: {
@@ -126,7 +126,7 @@ var config_default = defineConfig({
       // ─── EVENTS ────────────────────────────────────────────────────────────
       {
         name: "event",
-        label: "Events",
+        label: "Danh s\xE1ch S\u1EF1 ki\u1EC7n",
         path: "content/events",
         format: "json",
         ui: {

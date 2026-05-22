@@ -21,7 +21,7 @@ export default defineConfig({
       // ─── HERO ──────────────────────────────────────────────────────────────
       {
         name: "hero",
-        label: "Hero Section",
+        label: "Trang chủ (Đầu trang)",
         path: "content/hero",
         format: "json",
         ui: {
@@ -73,7 +73,7 @@ export default defineConfig({
       // ─── TV SHOWS ──────────────────────────────────────────────────────────
       {
         name: "tvShow",
-        label: "TV Show Episodes",
+        label: "Tập phim TV Show",
         path: "content/tv-shows",
         format: "json",
         ui: {
@@ -131,7 +131,7 @@ export default defineConfig({
       // ─── EVENTS ────────────────────────────────────────────────────────────
       {
         name: "event",
-        label: "Events",
+        label: "Danh sách Sự kiện",
         path: "content/events",
         format: "json",
         ui: {
