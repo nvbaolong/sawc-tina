@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
-import VercelDeployBadge from "@/components/VercelDeployBadge";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -51,7 +50,6 @@ export default function RootLayout({
         className={`${poppins.variable} ${plusJakartaSans.variable} font-body antialiased`}
       >
         {children}
-        <VercelDeployBadge />
       </body>
     </html>
   );

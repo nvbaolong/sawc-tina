@@ -10,19 +10,25 @@ import {
   CloseCircle,
 } from "@solar-icons/react";
 
-import { tinaField } from "tinacms/dist/react";
+import { urlFor } from "@/sanity/lib/image";
 import type { HeroContent } from "@/types";
 
 interface HeroProps {
   initialData?: HeroContent | null;
-  showEditHints?: boolean;
 }
 
-export default function Hero({ initialData, showEditHints = true }: HeroProps) {
+export default function Hero({ initialData }: HeroProps) {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
 
-  // Default values
-  const bgImage = initialData?.backgroundImage || "/assets/bg.png";
+  // Default values supporting both raw local strings and Sanity image references
+  let bgImage = "/assets/bg.png";
+  if (initialData?.backgroundImage) {
+    if (typeof initialData.backgroundImage === "string") {
+      bgImage = initialData.backgroundImage;
+    } else {
+      bgImage = urlFor(initialData.backgroundImage)?.url() || bgImage;
+    }
+  }
 
   const badgeText = initialData?.badgeText || "Australia's Favourite SA Show";
   const mainHeading = initialData?.mainHeading || "G'Day, South Australia!";
@@ -60,11 +66,6 @@ export default function Hero({ initialData, showEditHints = true }: HeroProps) {
     return text;
   };
 
-  // Helper to dynamically get tina field details when hints are active
-  const getTinaField = (fieldName: string) => {
-    return showEditHints ? tinaField(initialData as any, fieldName) : undefined;
-  };
-
   return (
     <section
       id="home"
@@ -78,7 +79,6 @@ export default function Hero({ initialData, showEditHints = true }: HeroProps) {
           fill
           className="object-cover object-[65%_center] sm:object-center"
           priority
-          data-tina-field={getTinaField("backgroundImage")}
         />
         <div
           className="absolute inset-0 z-10"
@@ -99,7 +99,7 @@ export default function Hero({ initialData, showEditHints = true }: HeroProps) {
             className="badge-white mb-8"
           >
             <VerifiedCheck className="w-4 h-4 text-primary shrink-0" />
-            <span className="hidden lg:inline" data-tina-field={getTinaField("badgeText")}>{badgeText}</span>
+            <span className="hidden lg:inline">{badgeText}</span>
             <span className="lg:hidden">Favorite Show</span>
           </motion.div>
 
@@ -108,7 +108,6 @@ export default function Hero({ initialData, showEditHints = true }: HeroProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-5xl md:text-7xl font-heading font-black text-white leading-[1.1] tracking-tight mb-8"
-            data-tina-field={getTinaField("mainHeading")}
           >
             {renderHeading(mainHeading)}
           </motion.h1>
@@ -118,7 +117,6 @@ export default function Hero({ initialData, showEditHints = true }: HeroProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-lg md:text-xl text-white/90 font-body mb-10 leading-relaxed max-w-lg"
-            data-tina-field={getTinaField("subtext")}
           >
             {subtext}
           </motion.p>
@@ -132,7 +130,6 @@ export default function Hero({ initialData, showEditHints = true }: HeroProps) {
             <button
               onClick={() => setIsVideoOpen(true)}
               className="btn-primary group"
-              data-tina-field={getTinaField("videoUrl")}
             >
               <Play className="btn-icon fill-current" />
               Watch Video

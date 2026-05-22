@@ -9,7 +9,6 @@ import {
   Plain,
 } from "@solar-icons/react";
 import { motion } from "framer-motion";
-import { tinaField } from "tinacms/dist/react";
 import type { TvShow } from "@/types";
 
 const STATIC_EPISODES = [
@@ -125,17 +124,13 @@ const STATIC_EPISODES = [
   },
 ];
 
+import { urlFor } from "@/sanity/lib/image";
+
 interface BestBitsProps {
   initialTvShows?: TvShow[];
-  showEditHints?: boolean;
 }
 
-export default function BestBits({ initialTvShows, showEditHints = true }: BestBitsProps) {
-  const getTinaField = (show: any, fieldName?: string) => {
-    if (!showEditHints) return undefined;
-    return fieldName ? tinaField(show, fieldName) : tinaField(show);
-  };
-
+export default function BestBits({ initialTvShows }: BestBitsProps) {
   const showsList = initialTvShows?.length
     ? initialTvShows
     : (STATIC_EPISODES as any as TvShow[]);
@@ -267,14 +262,20 @@ export default function BestBits({ initialTvShows, showEditHints = true }: BestB
             const styles = getCardStyles(index);
             const isActive = index === realActiveIndex;
 
-            // Image is always a plain string path with Tina CMS
-            const imageUrl = show.image as string | undefined;
+            // Support both Sanity image references and fallback raw string paths
+            let imageUrl = "";
+            if (show.image) {
+              if (typeof show.image === "string") {
+                imageUrl = show.image;
+              } else {
+                imageUrl = urlFor(show.image)?.url() || "";
+              }
+            }
 
             return (
               <div
-                key={show._sys?.filename || show.title}
+                key={show._id || show.title}
                 style={styles as React.CSSProperties}
-                data-tina-field={getTinaField(show as any)}
                 className={`absolute w-[280px] md:w-[350px] aspect-[3/4.2] rounded-[2.5rem] overflow-hidden group shadow-2xl border border-white/20 transform-gpu`}
                 onClick={() => {
                   let diff = index - realActiveIndex;
@@ -290,7 +291,6 @@ export default function BestBits({ initialTvShows, showEditHints = true }: BestB
                   <img
                     src={imageUrl}
                     alt={show.title}
-                    data-tina-field={getTinaField(show as any, 'image')}
                     className={`absolute inset-0 w-full h-full object-cover transition-all duration-1000 ${isActive ? "scale-105" : "scale-110 blur-[2px] grayscale-[0.3]"}`}
                   />
                 )}
@@ -302,10 +302,10 @@ export default function BestBits({ initialTvShows, showEditHints = true }: BestB
                   <div
                     className={`flex items-center justify-between mb-2 transition-all duration-700 ${isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
                   >
-                    <span className="text-[14px] text-white font-bold tracking-wider uppercase" data-tina-field={getTinaField(show as any, 'category')}>
+                    <span className="text-[14px] text-white font-bold tracking-wider uppercase">
                       {show.category || (show as any).episodeLabel || "LATEST"}
                     </span>
-                    <span className="text-[14px] text-white font-bold tracking-wider" data-tina-field={getTinaField(show as any, 'airDate')}>
+                    <span className="text-[14px] text-white font-bold tracking-wider">
                       {show.airDate
                         ? new Date(show.airDate).toLocaleDateString("en-GB", {
                             day: "2-digit",
@@ -318,7 +318,6 @@ export default function BestBits({ initialTvShows, showEditHints = true }: BestB
 
                   <p
                     className={`text-[#E5E5E5] font-body text-xs font-medium leading-[1.6] mb-6 line-clamp-3 transition-all duration-700 ${isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
-                    data-tina-field={getTinaField(show as any, 'description')}
                   >
                     {show.description}
                   </p>

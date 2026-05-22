@@ -1,33 +1,57 @@
-import HomeClient from "@/components/HomeClient";
-import { client } from "../../tina/__generated__/client";
+import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
+import BestBits from "@/components/BestBits";
+import FriendsWithBenefits from "@/components/FriendsWithBenefits";
+import CowsForCambodia from "@/components/CowsForCambodia";
+import CosisChoir from "@/components/CosisChoir";
+import Events from "@/components/Events";
+import Contact from "@/components/Contact";
+import Footer from "@/components/Footer";
+import type { HeroContent, TvShow, Event } from "@/types";
+import { client } from "@/sanity/lib/client";
 
+// export const revalidate = 0 means next.js fetches dynamic fresh data on every page hit, satisfying <1s update requirement
 export const revalidate = 0;
 
 export default async function Home() {
-  // Fetch initial content using the Tina client for live Visual Editing capabilities
-  const [heroRes, tvShowsRes, eventsRes] = await Promise.all([
-    client.queries.hero({ relativePath: "index.json" }),
-    client.queries.tvShowConnection(),
-    client.queries.eventConnection(),
-  ]);
+  let heroData: HeroContent | null = null;
+  let tvShows: TvShow[] = [];
+  let events: Event[] = [];
+
+  try {
+    const [sanityHero, sanityTvShows, sanityEvents] = await Promise.all([
+      client.fetch<HeroContent | null>(`*[_type == "hero"][0]`),
+      client.fetch<TvShow[]>(`*[_type == "tvShow"] | order(orderRank asc, airDate desc)`),
+      client.fetch<Event[]>(`*[_type == "event"] | order(orderRank asc, date asc)`),
+    ]);
+    
+    heroData = sanityHero;
+    tvShows = sanityTvShows || [];
+    events = sanityEvents || [];
+  } catch (error) {
+    console.error("Error fetching from Sanity:", error);
+  }
+
+  // Fallback defaults if Sanity is empty/not configured yet
+  const finalHeroData: HeroContent = heroData || {
+    badgeText: "Australia's Favourite SA Show",
+    mainHeading: "G'Day, South Australia!",
+    subtext: "Join Cosi on a mission to showcase the best of South Australia. Experience adventure, travel, and local stories with SAWC.",
+    backgroundImage: "/assets/FwB.png",
+    videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+  };
 
   return (
-    <HomeClient
-      hero={{
-        data: heroRes.data,
-        query: heroRes.query,
-        variables: heroRes.variables,
-      }}
-      tvShows={{
-        data: tvShowsRes.data,
-        query: tvShowsRes.query,
-        variables: tvShowsRes.variables,
-      }}
-      events={{
-        data: eventsRes.data,
-        query: eventsRes.query,
-        variables: eventsRes.variables,
-      }}
-    />
+    <main className="min-h-screen">
+      <Navbar />
+      <Hero initialData={finalHeroData} />
+      <BestBits initialTvShows={tvShows} />
+      <FriendsWithBenefits />
+      <CowsForCambodia />
+      <CosisChoir />
+      <Events initialEvents={events} />
+      <Contact />
+      <Footer />
+    </main>
   );
 }

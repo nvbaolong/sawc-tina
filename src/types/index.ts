@@ -2,15 +2,16 @@ export interface HeroContent {
   badgeText?: string
   mainHeading?: string
   subtext?: string
-  backgroundImage?: string
+  backgroundImage?: any
   videoUrl?: string
 }
 
 export interface TvShow {
+  _id?: string
   _sys?: { filename: string }
   title: string
   description?: string
-  image?: string
+  image?: any
   airDate?: string
   videoUrl?: string
   category?: 'full-episode' | 'clip' | 'behind-the-scenes'
@@ -18,6 +19,7 @@ export interface TvShow {
 }
 
 export interface Event {
+  _id?: string
   _sys?: { filename: string }
   title: string
   date: string
@@ -26,7 +28,7 @@ export interface Event {
   price?: string
   type?: string
   shortDescription?: string
-  coverImage?: string
+  coverImage?: any
   bookingUrl?: string
   orderRank?: number
 }

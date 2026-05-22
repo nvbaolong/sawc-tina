@@ -8,7 +8,6 @@ import {
   AltArrowRight,
   MapPoint,
 } from "@solar-icons/react";
-import { tinaField } from "tinacms/dist/react";
 import type { Event } from "@/types";
 
 const STATIC_EVENTS = [
@@ -56,24 +55,12 @@ const STATIC_EVENTS = [
 
 interface EventsProps {
   initialEvents?: Event[];
-  showEditHints?: boolean;
 }
 
-// Reusable event card
-function EventCard({
-  event,
-  noShadow,
-  showEditHints = true,
-}: {
-  event: Event;
-  noShadow?: boolean;
-  showEditHints?: boolean;
-}) {
-  const getTinaField = (fieldName?: string) => {
-    if (!showEditHints) return undefined;
-    return fieldName ? tinaField(event as any, fieldName) : tinaField(event as any);
-  };
+import { urlFor } from "@/sanity/lib/image";
 
+// Reusable event card
+function EventCard({ event, noShadow }: { event: Event; noShadow?: boolean }) {
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     return {
@@ -84,12 +71,21 @@ function EventCard({
 
   const { day, month } = formatDate(event.date);
 
+  // Support both Sanity image references and fallback raw string paths
+  let imageUrl = "";
+  if (event.coverImage) {
+    if (typeof event.coverImage === "string") {
+      imageUrl = event.coverImage;
+    } else {
+      imageUrl = urlFor(event.coverImage)?.url() || "";
+    }
+  }
+
   return (
     <a
       href={event.bookingUrl || "#"}
       target={event.bookingUrl ? "_blank" : undefined}
       rel="noopener noreferrer"
-      data-tina-field={getTinaField()}
       className={`flex flex-col bg-[#FCFCFD] rounded-[24px] overflow-hidden border border-[#E6E8EC]/50 transition-all duration-500 h-full group/card ${
         noShadow
           ? ""
@@ -98,12 +94,11 @@ function EventCard({
     >
       {/* Top Image Section */}
       <div className="relative h-[235px] w-full bg-slate-200 overflow-hidden">
-        {event.coverImage ? (
+        {imageUrl ? (
           /* eslint-disable-next-line @next/next/no-img-element */
           <img
-            src={event.coverImage}
+            src={imageUrl}
             alt={event.title}
-            data-tina-field={getTinaField('coverImage')}
             className="absolute inset-0 w-full h-full object-cover group-hover/card:scale-105 transition-transform duration-700"
           />
         ) : (
@@ -113,14 +108,14 @@ function EventCard({
         {/* Top Overlays */}
         <div className="absolute top-4 left-4 right-4 flex justify-between items-start">
           {event.type ? (
-            <div className="bg-[#F7F7F7] px-3 py-1.5 rounded-full text-[14px] font-medium text-[#131515] shadow-sm" data-tina-field={getTinaField('type')}>
+            <div className="bg-[#F7F7F7] px-3 py-1.5 rounded-full text-[14px] font-medium text-[#131515] shadow-sm">
               {event.type}
             </div>
           ) : (
             <div></div>
           )}
 
-          <div className="bg-white border border-[#12a70a] rounded-[12px] w-[58px] h-[58px] flex flex-col items-center justify-center shadow-[0px_10px_25px_0px_rgba(16,124,90,0.1)]" data-tina-field={getTinaField('date')}>
+          <div className="bg-white border border-[#12a70a] rounded-[12px] w-[58px] h-[58px] flex flex-col items-center justify-center shadow-[0px_10px_25px_0px_rgba(16,124,90,0.1)]">
             <div className="text-[12px] font-black text-[#494d4d] tracking-wider uppercase leading-none mb-0.5">
               {month}
             </div>
@@ -134,24 +129,24 @@ function EventCard({
       {/* Content Section */}
       <div className="p-6 flex flex-col flex-1">
         <div className="mb-4">
-          <h3 className="text-[16px] font-bold text-[#131515] leading-tight mb-2 group-hover/card:text-primary transition-colors uppercase" data-tina-field={getTinaField('title')}>
+          <h3 className="text-[16px] font-bold text-[#131515] leading-tight mb-2 group-hover/card:text-primary transition-colors uppercase">
             {event.title}
           </h3>
 
-          <div className="flex items-center gap-2 text-[#494d4d] font-normal text-[12px]" data-tina-field={getTinaField('venue')}>
+          <div className="flex items-center gap-2 text-[#494d4d] font-normal text-[12px]">
             <MapPoint className="w-4 h-4 text-primary shrink-0" />
             {event.venue}
           </div>
         </div>
 
-        <p className="text-[#131515]/90 text-[12px] font-normal leading-relaxed mb-6 flex-1 line-clamp-2" data-tina-field={getTinaField('shortDescription')}>
+        <p className="text-[#131515]/90 text-[12px] font-normal leading-relaxed mb-6 flex-1 line-clamp-2">
           {event.shortDescription ||
             "'RIDING OUT THE DROUGHT' SA's Largest Horse Trail Ride Event"}
         </p>
 
         {/* Footer */}
         <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-          <span className="text-[22px] font-bold text-[#23262F]" data-tina-field={getTinaField('price')}>
+          <span className="text-[22px] font-bold text-[#23262F]">
             {event.price || "$0"}
           </span>
 
@@ -200,7 +195,7 @@ function EmptyState() {
   );
 }
 
-export default function Events({ initialEvents, showEditHints = true }: EventsProps) {
+export default function Events({ initialEvents }: EventsProps) {
   // Use CMS events if available; otherwise fall back to static data
   // Pass empty array to force empty state for testing: initialEvents=[]
   const eventsList = initialEvents !== undefined
@@ -278,7 +273,7 @@ export default function Events({ initialEvents, showEditHints = true }: EventsPr
                     key={event._sys?.filename || event.title}
                     className="shrink-0 w-[85vw] snap-center"
                   >
-                    <EventCard event={event} noShadow showEditHints={showEditHints} />
+                    <EventCard event={event} noShadow />
                   </div>
                 ))}
               </div>
@@ -347,7 +342,7 @@ export default function Events({ initialEvents, showEditHints = true }: EventsPr
                       transition={{ delay: index * 0.1 }}
                       className="group w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.33%-1.5rem)] max-w-[380px]"
                     >
-                      <EventCard event={event} showEditHints={showEditHints} />
+                      <EventCard event={event} />
                     </motion.div>
                   ))}
                 </motion.div>
