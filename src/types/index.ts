@@ -30,3 +30,20 @@ export interface Event {
   bookingUrl?: string
   orderRank?: number
 }
+
+export interface FwbContent {
+  badgeText?: string
+  titleLine1?: string
+  titleLine2?: string
+  subtext?: string
+  buttonText?: string
+  buttonLink?: string
+  price?: string
+  backgroundImage?: string
+  cosiImage?: string
+  card1Title?: string
+  card1Description?: string
+  card2Title?: string
+  card2Description?: string
+}
+

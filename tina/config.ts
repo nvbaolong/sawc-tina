@@ -63,6 +63,88 @@ export default defineConfig({
         ],
       },
 
+      // ─── FRIENDS WITH BENEFITS ─────────────────────────────────────────────
+      {
+        name: "friendsWithBenefits",
+        label: "Friends With Benefits",
+        path: "content/fwb",
+        format: "json",
+        ui: {
+          allowedActions: { create: false, delete: false },
+          global: true,
+        },
+        fields: [
+          {
+            type: "string",
+            name: "badgeText",
+            label: "Badge Text",
+          },
+          {
+            type: "string",
+            name: "titleLine1",
+            label: "Title Line 1",
+          },
+          {
+            type: "string",
+            name: "titleLine2",
+            label: "Title Line 2",
+          },
+          {
+            type: "string",
+            name: "subtext",
+            label: "Subtext",
+            ui: { component: "textarea" },
+          },
+          {
+            type: "string",
+            name: "buttonText",
+            label: "Button Text",
+          },
+          {
+            type: "string",
+            name: "buttonLink",
+            label: "Button Link",
+          },
+          {
+            type: "string",
+            name: "price",
+            label: "Price Label (e.g. $4.95)",
+          },
+          {
+            type: "image",
+            name: "backgroundImage",
+            label: "Background Image",
+          },
+          {
+            type: "image",
+            name: "cosiImage",
+            label: "Cosi Cutout Image",
+          },
+          {
+            type: "string",
+            name: "card1Title",
+            label: "Card 1 Title",
+          },
+          {
+            type: "string",
+            name: "card1Description",
+            label: "Card 1 Description",
+            ui: { component: "textarea" },
+          },
+          {
+            type: "string",
+            name: "card2Title",
+            label: "Card 2 Title",
+          },
+          {
+            type: "string",
+            name: "card2Description",
+            label: "Card 2 Description",
+            ui: { component: "textarea" },
+          },
+        ],
+      },
+
       // ─── TV SHOWS ──────────────────────────────────────────────────────────
       {
         name: "tvShow",

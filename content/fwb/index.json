@@ -1,0 +1,15 @@
+{
+  "badgeText": "Special Offer",
+  "titleLine1": "Friends With",
+  "titleLine2": "Benefits",
+  "subtext": "Join the exclusive FWB membership for local deals, priority access, and your ultimate SA guide.",
+  "buttonText": "JOIN NOW",
+  "buttonLink": "#join-membership",
+  "price": "$4.95",
+  "backgroundImage": "/assets/FwB.png",
+  "cosiImage": "/assets/014A1782_1.png",
+  "card1Title": "Instant Rewards",
+  "card1Description": "Grab \"Buy 1 Get 1 Free\" drinks and huge discounts at SA’s best pubs, wineries, and shops.",
+  "card2Title": "Be First in Line",
+  "card2Description": "Get priority booking for Cosi’s Choir and special events before they sell out!"
+}

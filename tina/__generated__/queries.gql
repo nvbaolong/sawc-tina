@@ -53,6 +53,61 @@ query heroConnection($before: String, $after: String, $first: Float, $last: Floa
   }
 }
 
+query friendsWithBenefits($relativePath: String!) {
+  friendsWithBenefits(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...FriendsWithBenefitsParts
+  }
+}
+
+query friendsWithBenefitsConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: FriendsWithBenefitsFilter) {
+  friendsWithBenefitsConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...FriendsWithBenefitsParts
+      }
+    }
+  }
+}
+
 query tvShow($relativePath: String!) {
   tvShow(relativePath: $relativePath) {
     ... on Document {

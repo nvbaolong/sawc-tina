@@ -7,6 +7,23 @@ fragment HeroParts on Hero {
   videoUrl
 }
 
+fragment FriendsWithBenefitsParts on FriendsWithBenefits {
+  __typename
+  badgeText
+  titleLine1
+  titleLine2
+  subtext
+  buttonText
+  buttonLink
+  price
+  backgroundImage
+  cosiImage
+  card1Title
+  card1Description
+  card2Title
+  card2Description
+}
+
 fragment TvShowParts on TvShow {
   __typename
   title
