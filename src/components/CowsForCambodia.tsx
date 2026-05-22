@@ -17,7 +17,7 @@ export default function CowsForCambodia() {
         {/* MOBILE/TABLET HEADER (Hidden on desktop) */}
         <div className="flex xl:hidden flex-col items-start w-full">
           <div className="badge-white mb-6 border border-gray-100">
-            <Heart className="w-4 h-4 text-green-500 shrink-0" />
+            <Heart className="w-4 h-4 text-primary shrink-0" />
             Travel with Heart
           </div>
 
@@ -114,7 +114,7 @@ export default function CowsForCambodia() {
           
           {/* DESKTOP HEADER (Hidden on mobile/tablet) */}
           <div className="hidden xl:flex badge-white mb-8 border border-gray-100">
-            <Heart className="w-4 h-4 text-green-500 shrink-0" />
+            <Heart className="w-4 h-4 text-primary shrink-0" />
             Travel with Heart
           </div>
 

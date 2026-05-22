@@ -14,7 +14,7 @@ export default function CosisChoir() {
         {/* LEFT COLUMN: Content */}
         <div className="flex-1 w-full max-w-2xl flex flex-col items-start">
           <div className="badge-white mb-8 border border-gray-100">
-            <MusicNotes className="w-4 h-4 text-green-500 shrink-0" />
+            <MusicNotes className="w-4 h-4 text-primary shrink-0" />
             Community & Connection
           </div>
 

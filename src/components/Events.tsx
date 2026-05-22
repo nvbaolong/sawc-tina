@@ -231,7 +231,7 @@ export default function Events({ initialEvents }: EventsProps) {
         {/* Header Area */}
         <div className="flex flex-col items-center text-center space-y-4 mb-16">
           <div className="badge-white border border-gray-100">
-            <Calendar className="w-4 h-4 text-[#12a70a] shrink-0" />
+            <Calendar className="w-4 h-4 text-primary shrink-0" />
             Live Event
           </div>
           <h2 className="text-4xl lg:text-[48px] font-heading font-black tracking-tight text-[#131515] leading-[1.1] max-w-2xl px-4">

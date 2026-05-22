@@ -15,7 +15,7 @@ export default function Contact() {
           {/* DESKTOP BADGE (Hidden on mobile/tablet) */}
           <div className="hidden xl:flex flex-col items-center mb-8 relative z-30 w-full lg:w-auto">
             <div className="bg-white border border-gray-100 px-6 py-2 rounded-full flex items-center gap-2 shadow-sm">
-              <Smartphone className="w-4 h-4 text-[#12a70a] shrink-0" />
+              <Smartphone className="w-4 h-4 text-primary shrink-0" />
               <span className="text-[14px] font-medium text-[#131515]">
                 Contact Us
               </span>
@@ -41,7 +41,7 @@ export default function Contact() {
           {/* MOBILE/TABLET BADGE (Hidden on desktop) */}
           <div className="flex xl:hidden flex-col items-center mb-8 relative z-30">
             <div className="bg-white border border-gray-100 px-6 py-2 rounded-full flex items-center gap-2 shadow-sm">
-              <Smartphone className="w-4 h-4 text-[#12a70a] shrink-0" />
+              <Smartphone className="w-4 h-4 text-primary shrink-0" />
               <span className="text-[14px] font-medium text-[#131515]">
                 Contact Us
               </span>

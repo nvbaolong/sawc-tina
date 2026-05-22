@@ -195,7 +195,7 @@ export default function BestBits({ initialTvShows }: BestBitsProps) {
     >
       <div className="container mx-auto px-8 relative z-10 text-center mb-16">
         <div className="badge-white mb-6">
-          <Tv className="w-4 h-4 text-green-500" />
+          <Tv className="w-4 h-4 text-primary shrink-0" />
           Our TV Show
         </div>
         <h2 className="text-3xl md:text-4xl lg:text-6xl font-heading font-black mb-4 tracking-tight text-black leading-[1.1]">
