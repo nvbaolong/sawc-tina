@@ -15,9 +15,10 @@ import type { HeroContent } from "@/types";
 
 interface HeroProps {
   initialData?: HeroContent | null;
+  showEditHints?: boolean;
 }
 
-export default function Hero({ initialData }: HeroProps) {
+export default function Hero({ initialData, showEditHints = true }: HeroProps) {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
 
   // Default values
@@ -59,6 +60,11 @@ export default function Hero({ initialData }: HeroProps) {
     return text;
   };
 
+  // Helper to dynamically get tina field details when hints are active
+  const getTinaField = (fieldName: string) => {
+    return showEditHints ? tinaField(initialData as any, fieldName) : undefined;
+  };
+
   return (
     <section
       id="home"
@@ -72,7 +78,7 @@ export default function Hero({ initialData }: HeroProps) {
           fill
           className="object-cover object-[65%_center] sm:object-center"
           priority
-          data-tina-field={tinaField(initialData as any, "backgroundImage")}
+          data-tina-field={getTinaField("backgroundImage")}
         />
         <div
           className="absolute inset-0 z-10"
@@ -93,7 +99,7 @@ export default function Hero({ initialData }: HeroProps) {
             className="badge-white mb-8"
           >
             <VerifiedCheck className="w-4 h-4 text-primary shrink-0" />
-            <span className="hidden lg:inline" data-tina-field={tinaField(initialData as any, "badgeText")}>{badgeText}</span>
+            <span className="hidden lg:inline" data-tina-field={getTinaField("badgeText")}>{badgeText}</span>
             <span className="lg:hidden">Favorite Show</span>
           </motion.div>
 
@@ -102,7 +108,7 @@ export default function Hero({ initialData }: HeroProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-5xl md:text-7xl font-heading font-black text-white leading-[1.1] tracking-tight mb-8"
-            data-tina-field={tinaField(initialData as any, "mainHeading")}
+            data-tina-field={getTinaField("mainHeading")}
           >
             {renderHeading(mainHeading)}
           </motion.h1>
@@ -112,7 +118,7 @@ export default function Hero({ initialData }: HeroProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-lg md:text-xl text-white/90 font-body mb-10 leading-relaxed max-w-lg"
-            data-tina-field={tinaField(initialData as any, "subtext")}
+            data-tina-field={getTinaField("subtext")}
           >
             {subtext}
           </motion.p>
@@ -126,7 +132,7 @@ export default function Hero({ initialData }: HeroProps) {
             <button
               onClick={() => setIsVideoOpen(true)}
               className="btn-primary group"
-              data-tina-field={tinaField(initialData as any, "videoUrl")}
+              data-tina-field={getTinaField("videoUrl")}
             >
               <Play className="btn-icon fill-current" />
               Watch Video

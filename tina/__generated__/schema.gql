@@ -94,6 +94,7 @@ type Collection {
 union DocumentNode = Hero | TvShow | Event | Folder
 
 type Hero implements Node & Document {
+  buildStatus: String
   badgeText: String
   mainHeading: String
   subtext: String
@@ -119,6 +120,7 @@ input ImageFilter {
 }
 
 input HeroFilter {
+  buildStatus: StringFilter
   badgeText: StringFilter
   mainHeading: StringFilter
   subtext: StringFilter
@@ -257,6 +259,7 @@ input DocumentMutation {
 }
 
 input HeroMutation {
+  buildStatus: String
   badgeText: String
   mainHeading: String
   subtext: String

@@ -8,6 +8,7 @@ export function gql(strings, ...args) {
 export const HeroPartsFragmentDoc = gql`
     fragment HeroParts on Hero {
   __typename
+  buildStatus
   badgeText
   mainHeading
   subtext

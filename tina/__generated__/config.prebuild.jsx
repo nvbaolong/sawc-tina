@@ -24,9 +24,15 @@ var config_default = defineConfig({
         format: "json",
         ui: {
           allowedActions: { create: false, delete: false },
-          global: true
+          global: true,
+          router: () => "/"
         },
         fields: [
+          {
+            type: "string",
+            name: "buildStatus",
+            label: "Deployment Status"
+          },
           {
             type: "string",
             name: "badgeText",
@@ -66,6 +72,9 @@ var config_default = defineConfig({
         label: "TV Show Episodes",
         path: "content/tv-shows",
         format: "json",
+        ui: {
+          router: () => "/"
+        },
         fields: [
           {
             type: "string",
@@ -120,6 +129,9 @@ var config_default = defineConfig({
         label: "Events",
         path: "content/events",
         format: "json",
+        ui: {
+          router: () => "/"
+        },
         fields: [
           {
             type: "string",
