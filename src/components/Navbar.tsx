@@ -16,6 +16,7 @@ export default function Navbar() {
     const sections = [
       "home",
       "our-tv-show",
+      "fwb",
       "cows-for-cambodia",
       "cosis-choir",
       "book-events",
@@ -47,6 +48,7 @@ export default function Navbar() {
   const navLinks = [
     { title: "Home", href: "#home", id: "home" },
     { title: "Our TV Show", href: "#our-tv-show", id: "our-tv-show" },
+    { title: "Special Offer", href: "#fwb", id: "fwb" },
     { title: "Charity", href: "#cows-for-cambodia", id: "cows-for-cambodia" },
     { title: "Cosi's Choir", href: "#cosis-choir", id: "cosis-choir" },
     { title: "Event", href: "#book-events", id: "book-events" },

@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import BestBits from "@/components/BestBits";
+import FriendsWithBenefits from "@/components/FriendsWithBenefits";
 import CowsForCambodia from "@/components/CowsForCambodia";
 import CosisChoir from "@/components/CosisChoir";
 import Events from "@/components/Events";
@@ -55,6 +56,7 @@ export default async function Home() {
       <Navbar />
       <Hero initialData={heroData} />
       <BestBits initialTvShows={tvShows} />
+      <FriendsWithBenefits />
       <CowsForCambodia />
       <CosisChoir />
       <Events initialEvents={events} />
