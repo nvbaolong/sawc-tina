@@ -45,7 +45,7 @@ export default function CosisChoir() {
             </p>
           </div>
 
-          <a href="#" className="btn-primary px-8">
+          <a href="https://www.facebook.com/people/Cosis-Choir/61574949387739/" target="_blank" rel="noopener noreferrer" className="btn-primary px-8">
             <span>
               <span className="hidden sm:inline">Join </span>Community
             </span>{" "}

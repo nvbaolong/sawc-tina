@@ -71,7 +71,7 @@ export default function Footer() {
           {/* Join Community Section */}
           <div className="flex flex-col items-center lg:items-end gap-5 shrink-0">
             <h4 className="text-[14px] font-bold text-[#23262f] uppercase tracking-wider">
-              JOIN OUR COMMUNITY 🔥
+              JOIN OUR COMMUNITY
             </h4>
             <div className="flex items-center gap-4">
               {/* Facebook */}

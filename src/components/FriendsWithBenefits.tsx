@@ -15,7 +15,7 @@ export default function FriendsWithBenefits() {
   const backgroundImage = "/assets/FwB.png";
   const cosiImage = "/assets/014A1782_1.png";
   const card1Title = "Instant Rewards";
-  const card1Description = "Grab \"Buy 1 Get 1 Free\" drinks and huge discounts at SA’s best pubs, wineries, and shops.";
+  const card1Description = "Redeem an offer from one of over 100 retail partners through the app.";
   const card2Title = "Be First in Line";
   const card2Description = "Get priority booking for Cosi’s Choir and special events before they sell out!";
 
@@ -111,11 +111,7 @@ export default function FriendsWithBenefits() {
               </motion.div>
 
               {/* Floating Card 1: Instant Rewards */}
-              <motion.div
-                initial={{ opacity: 0, x: -50, y: -20 }}
-                whileInView={{ opacity: 1, x: 0, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: 0.4, type: "spring" }}
+              <div
                 className="absolute top-[15%] -left-4 sm:left-[-15%] md:left-[-20%] lg:left-[-24.4%] bg-white/95 backdrop-blur-md border border-white/80 rounded-2xl p-5 shadow-2xl w-[280px] sm:w-[320px] lg:w-[369px] z-20 text-left hover:scale-[1.05] transition-all duration-300"
               >
                 <div className="flex items-center gap-3 mb-2.5">
@@ -129,14 +125,10 @@ export default function FriendsWithBenefits() {
                 <p className="font-body text-[14px] sm:text-[15px] font-medium text-[#101828]/80 leading-normal">
                   {card1Description}
                 </p>
-              </motion.div>
+              </div>
 
               {/* Floating Card 2: Be First in Line */}
-              <motion.div
-                initial={{ opacity: 0, x: 50, y: 20 }}
-                whileInView={{ opacity: 1, x: 0, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: 0.5, type: "spring" }}
+              <div
                 className="absolute top-[60%] -right-4 sm:-right-8 md:left-[2%] lg:left-[5%] left-auto md:right-auto bg-white/95 backdrop-blur-md border border-white/80 rounded-2xl p-5 shadow-2xl w-[280px] sm:w-[320px] lg:w-[369px] z-20 text-left hover:scale-[1.05] transition-all duration-300"
               >
                 <div className="flex items-center gap-3 mb-2.5">
@@ -150,7 +142,7 @@ export default function FriendsWithBenefits() {
                 <p className="font-body text-[14px] sm:text-[15px] font-medium text-[#101828]/80 leading-normal">
                   {card2Description}
                 </p>
-              </motion.div>
+              </div>
             </div>
           </div>
 
