@@ -34,10 +34,10 @@ export default function FriendsWithBenefits() {
       </div>
 
       <div className="container mx-auto px-8 relative z-10 max-w-[1440px]">
-        <div className="flex flex-col lg:flex-row items-stretch gap-16 lg:gap-24">
+        <div className="flex flex-col lg:flex-row items-stretch gap-6 lg:gap-24">
           
           {/* LEFT COLUMN: Main Content */}
-          <div className="flex-1 w-full max-w-2xl flex flex-col justify-center items-start text-left pb-16 lg:pb-24 pt-8">
+          <div className="flex-none lg:flex-1 w-full max-w-2xl flex flex-col justify-center items-start text-left pb-0 lg:pb-24 pt-4 lg:pt-8">
             {/* Badge */}
             <motion.div
               initial={{ opacity: 0, y: -20 }}
@@ -99,10 +99,34 @@ export default function FriendsWithBenefits() {
           </div>
 
           {/* RIGHT COLUMN: Interactive Image + Floating Cards */}
-          <div className="flex-1 w-full lg:max-w-[780px] flex justify-center lg:justify-end items-end relative min-h-[480px] lg:min-h-[580px]">
-            <div className="relative w-full max-w-[650px] lg:max-w-[754px] z-10 select-none">
-              
-              {/* Cutout Image of Cosi */}
+          <div className="flex-none lg:flex-1 w-full lg:max-w-[1100px] flex flex-col lg:flex-row justify-center lg:justify-end items-end relative">
+
+            {/* Mobile-only: Cards stacked ABOVE the character */}
+            <div className="flex lg:hidden flex-col gap-4 w-full mb-4 z-20">
+              {/* Mobile Card 1 */}
+              <div className="bg-white/95 backdrop-blur-md border border-white/80 rounded-2xl p-4 shadow-2xl w-full text-left">
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="bg-[#00C853] w-9 h-9 rounded-full flex items-center justify-center shrink-0 shadow-lg shadow-green-500/20">
+                    <Percent className="w-4 h-4 text-white" />
+                  </div>
+                  <h4 className="font-heading font-bold text-[#101828] text-[16px]">{card1Title}</h4>
+                </div>
+                <p className="font-body text-[13px] font-medium text-[#101828]/80 leading-normal">{card1Description}</p>
+              </div>
+              {/* Mobile Card 2 */}
+              <div className="bg-white/95 backdrop-blur-md border border-white/80 rounded-2xl p-4 shadow-2xl w-full text-left">
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="bg-[#FF6D00] w-9 h-9 rounded-full flex items-center justify-center shrink-0 shadow-lg shadow-orange-500/20">
+                    <Sparkles className="w-4 h-4 text-white" />
+                  </div>
+                  <h4 className="font-heading font-bold text-[#101828] text-[16px]">{card2Title}</h4>
+                </div>
+                <p className="font-body text-[13px] font-medium text-[#101828]/80 leading-normal">{card2Description}</p>
+              </div>
+            </div>
+
+            {/* Character image — bigger on all sizes */}
+            <div className="relative w-full max-w-[780px] lg:max-w-[1100px] z-10 select-none">
               <motion.div
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -118,38 +142,26 @@ export default function FriendsWithBenefits() {
                 />
               </motion.div>
 
-              {/* Floating Card 1: Instant Rewards */}
-              <div
-                className="absolute top-[15%] -left-4 sm:left-[-15%] md:left-[-20%] lg:left-[-24.4%] bg-white/95 backdrop-blur-md border border-white/80 rounded-2xl p-5 shadow-2xl w-[280px] sm:w-[320px] lg:w-[369px] z-20 text-left hover:scale-[1.05] transition-all duration-300"
-              >
+              {/* Desktop-only floating Card 1: Instant Rewards — shifted up to top-[2%] left-[-10%] */}
+              <div className="hidden lg:block absolute top-[2%] left-[-10%] bg-white/95 backdrop-blur-md border border-white/80 rounded-2xl p-5 shadow-2xl w-[369px] z-20 text-left hover:scale-[1.05] transition-all duration-300">
                 <div className="flex items-center gap-3 mb-2.5">
                   <div className="bg-[#00C853] w-10 h-10 rounded-full flex items-center justify-center shrink-0 shadow-lg shadow-green-500/20">
                     <Percent className="w-5 h-5 text-white" />
                   </div>
-                  <h4 className="font-heading font-bold text-[#101828] text-[18px]">
-                    {card1Title}
-                  </h4>
+                  <h4 className="font-heading font-bold text-[#101828] text-[18px]">{card1Title}</h4>
                 </div>
-                <p className="font-body text-[14px] sm:text-[15px] font-medium text-[#101828]/80 leading-normal">
-                  {card1Description}
-                </p>
+                <p className="font-body text-[15px] font-medium text-[#101828]/80 leading-normal">{card1Description}</p>
               </div>
 
-              {/* Floating Card 2: Be First in Line */}
-              <div
-                className="absolute top-[60%] -right-4 sm:-right-8 md:left-[2%] lg:left-[5%] left-auto md:right-auto bg-white/95 backdrop-blur-md border border-white/80 rounded-2xl p-5 shadow-2xl w-[280px] sm:w-[320px] lg:w-[369px] z-20 text-left hover:scale-[1.05] transition-all duration-300"
-              >
+              {/* Desktop-only floating Card 2: Be First in Line — shifted down to top-[36%] left-[-2%] */}
+              <div className="hidden lg:block absolute top-[36%] left-[-2%] bg-white/95 backdrop-blur-md border border-white/80 rounded-2xl p-5 shadow-2xl w-[369px] z-20 text-left hover:scale-[1.05] transition-all duration-300">
                 <div className="flex items-center gap-3 mb-2.5">
                   <div className="bg-[#FF6D00] w-10 h-10 rounded-full flex items-center justify-center shrink-0 shadow-lg shadow-orange-500/20">
                     <Sparkles className="w-5 h-5 text-white" />
                   </div>
-                  <h4 className="font-heading font-bold text-[#101828] text-[18px]">
-                    {card2Title}
-                  </h4>
+                  <h4 className="font-heading font-bold text-[#101828] text-[18px]">{card2Title}</h4>
                 </div>
-                <p className="font-body text-[14px] sm:text-[15px] font-medium text-[#101828]/80 leading-normal">
-                  {card2Description}
-                </p>
+                <p className="font-body text-[15px] font-medium text-[#101828]/80 leading-normal">{card2Description}</p>
               </div>
             </div>
           </div>

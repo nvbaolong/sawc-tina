@@ -14,7 +14,7 @@ export interface TvShow {
   image?: any
   airDate?: string
   videoUrl?: string
-  category?: string
+
   orderRank?: number
 }
 

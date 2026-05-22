@@ -35,12 +35,7 @@ export const tvShow = defineType({
       type: "string",
       description: "Link to watch this episode",
     }),
-    defineField({
-      name: "category",
-      title: "Category / Season (e.g. Season 11)",
-      type: "string",
-      description: "Label for the card's top badge (e.g. Season 11, EP 01, Clip)",
-    }),
+
     defineField({
       name: "orderRank",
       title: "Display Order",

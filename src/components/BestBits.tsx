@@ -300,12 +300,12 @@ export default function BestBits({ initialTvShows }: BestBitsProps) {
                   className={`absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-8 transition-opacity duration-500 ${isActive ? "opacity-100" : "opacity-40"}`}
                 >
                   <div
-                    className={`flex items-center justify-between mb-2 transition-all duration-700 ${isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+                    className={`flex items-center justify-between gap-4 mb-2 transition-all duration-700 ${isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
                   >
-                    <span className="text-[14px] text-white font-bold tracking-wider uppercase">
-                      {show.category || (show as any).episodeLabel || "LATEST"}
+                    <span className="text-[16px] text-white font-heading font-black tracking-tight text-left line-clamp-1 flex-1">
+                      {show.title}
                     </span>
-                    <span className="text-[14px] text-white font-bold tracking-wider">
+                    <span className="text-[13px] text-white/80 font-body font-medium tracking-wider shrink-0">
                       {show.airDate
                         ? new Date(show.airDate).toLocaleDateString("en-GB", {
                             day: "2-digit",

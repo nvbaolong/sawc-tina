@@ -57,7 +57,7 @@ export default function Footer() {
           </div>
 
           {/* Links */}
-          <nav className="flex flex-wrap justify-center items-center gap-8 lg:gap-12">
+          <nav className="grid grid-cols-3 gap-x-4 gap-y-4 md:gap-x-8 justify-items-center text-center lg:flex lg:flex-row lg:items-center lg:gap-12">
             {navLinks.map((link) => (
               <Link
                 key={link.title}

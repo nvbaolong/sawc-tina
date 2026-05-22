@@ -13,8 +13,11 @@ export const event = defineType({
     }),
     defineField({
       name: "date",
-      title: "Date & Time",
-      type: "datetime",
+      title: "Event Date",
+      type: "date",
+      options: {
+        dateFormat: 'DD/MM/YYYY',
+      },
       validation: (Rule) => Rule.required(),
     }),
     defineField({

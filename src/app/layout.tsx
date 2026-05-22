@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins, Plus_Jakarta_Sans } from "next/font/google";
+import { draftMode } from "next/headers";
+import { VisualEditing } from "next-sanity";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -39,17 +41,20 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const isDraft = (await draftMode()).isEnabled;
+
   return (
     <html lang="en">
       <body
         className={`${poppins.variable} ${plusJakartaSans.variable} font-body antialiased`}
       >
         {children}
+        {isDraft && <VisualEditing />}
       </body>
     </html>
   );

@@ -8,7 +8,7 @@ import Events from "@/components/Events";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import type { HeroContent, TvShow, Event } from "@/types";
-import { client } from "@/sanity/lib/client";
+import { getSanityClient } from "@/sanity/lib/preview";
 
 // export const revalidate = 0 means next.js fetches dynamic fresh data on every page hit, satisfying <1s update requirement
 export const revalidate = 0;
@@ -19,10 +19,11 @@ export default async function Home() {
   let events: Event[] = [];
 
   try {
+    const sanityClient = await getSanityClient();
     const [sanityHero, sanityTvShows, sanityEvents] = await Promise.all([
-      client.fetch<HeroContent | null>(`*[_type == "hero"][0]`),
-      client.fetch<TvShow[]>(`*[_type == "tvShow"] | order(orderRank asc, airDate desc)`),
-      client.fetch<Event[]>(`*[_type == "event"] | order(orderRank asc, date asc)`),
+      sanityClient.fetch<HeroContent | null>(`*[_type == "hero"][0]`),
+      sanityClient.fetch<TvShow[]>(`*[_type == "tvShow"] | order(orderRank asc, airDate desc)`),
+      sanityClient.fetch<Event[]>(`*[_type == "event"] | order(orderRank asc, date asc)`),
     ]);
     
     heroData = sanityHero;
