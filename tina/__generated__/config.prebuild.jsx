@@ -1,5 +1,32 @@
 // tina/config.ts
+import React from "react";
 import { defineConfig } from "tinacms";
+var VercelStatusBadge = () => {
+  return React.createElement(
+    "div",
+    { style: { marginTop: "12px", marginBottom: "20px", padding: "16px", background: "#f9fafb", border: "1px solid #e5e7eb", borderRadius: "8px" } },
+    React.createElement(
+      "label",
+      { style: { display: "block", fontSize: "14px", fontWeight: "bold", color: "#1f2937", marginBottom: "8px" } },
+      "Website Update Status (Ti\u1EBFn tr\xECnh c\u1EADp nh\u1EADt)"
+    ),
+    React.createElement("img", {
+      src: "https://deploy-badge.vercel.app/api/nvbaolong-1191s-projects/sawc-tina.svg",
+      alt: "Vercel Deployment Status",
+      style: { display: "block", height: "28px" }
+    }),
+    React.createElement(
+      "p",
+      { style: { fontSize: "12px", color: "#4b5563", marginTop: "8px", lineHeight: "1.4" } },
+      'After clicking "Save" on any section, Vercel will rebuild the website (takes ~2 minutes). Once this badge turns green (Ready), your changes are live on the website.'
+    ),
+    React.createElement(
+      "p",
+      { style: { fontSize: "12px", color: "#9ca3af", marginTop: "4px", fontStyle: "italic" } },
+      "(Sau khi b\u1EA5m Save, Vercel s\u1EBD ti\u1EBFn h\xE0nh c\u1EADp nh\u1EADt website. Khi n\xFAt chuy\u1EC3n sang m\xE0u xanh l\xE1 c\xE2y, n\u1ED9i dung m\u1EDBi \u0111\xE3 \u0111\u01B0\u1EE3c hi\u1EC3n th\u1ECB tr\xEAn trang ch\u1EE7.)"
+    )
+  );
+};
 var config_default = defineConfig({
   branch: process.env.GITHUB_BRANCH || process.env.VERCEL_GIT_COMMIT_REF || "main",
   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID || "",
@@ -27,6 +54,14 @@ var config_default = defineConfig({
           global: true
         },
         fields: [
+          {
+            type: "string",
+            name: "buildStatus",
+            label: "Deployment Status",
+            ui: {
+              component: VercelStatusBadge
+            }
+          },
           {
             type: "string",
             name: "badgeText",
