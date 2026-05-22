@@ -32,13 +32,14 @@ export default function Footer() {
   const navLinks = [
     { title: "Home", href: "#home" },
     { title: "Our Show", href: "#our-tv-show" },
+    { title: "FwB", href: "#fwb" },
     { title: "Charity", href: "#cows-for-cambodia" },
-    { title: "Events", href: "#book-events" },
     { title: "Cosi's Choir", href: "#cosis-choir" },
+    { title: "Events", href: "#book-events" },
   ];
 
   return (
-    <footer className="bg-[#fcfcfd] py-16 lg:py-24 border-t border-[#f4f5f6]">
+    <footer className="bg-[#fcfcfd] pt-8 pb-10 lg:pt-12 lg:pb-16 border-t border-[#f4f5f6]">
       <div className="container mx-auto px-8 max-w-[1440px]">
         {/* Top Row: Navigation and Community */}
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12 pb-16">
