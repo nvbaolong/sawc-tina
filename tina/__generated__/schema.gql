@@ -99,7 +99,6 @@ type Hero implements Node & Document {
   subtext: String
   backgroundImage: String
   videoUrl: String
-  buildStatus: String
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
@@ -125,7 +124,6 @@ input HeroFilter {
   subtext: StringFilter
   backgroundImage: ImageFilter
   videoUrl: StringFilter
-  buildStatus: StringFilter
 }
 
 type HeroConnectionEdges {
@@ -264,7 +262,6 @@ input HeroMutation {
   subtext: String
   backgroundImage: String
   videoUrl: String
-  buildStatus: String
 }
 
 input TvShowMutation {

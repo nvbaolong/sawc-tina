@@ -57,12 +57,6 @@ var config_default = defineConfig({
             name: "videoUrl",
             label: "Video URL (YouTube)",
             description: "YouTube link for the 'Watch Video' button"
-          },
-          {
-            type: "string",
-            name: "buildStatus",
-            label: "Build Status",
-            description: "Vercel deployment status"
           }
         ]
       },

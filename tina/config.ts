@@ -31,6 +31,11 @@ export default defineConfig({
         fields: [
           {
             type: "string",
+            name: "buildStatus",
+            label: "Deployment Status",
+          },
+          {
+            type: "string",
             name: "badgeText",
             label: "Badge Text",
             description: "Short badge shown above the heading (e.g. 'Australia's Favourite SA Show')",
