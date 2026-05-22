@@ -90,7 +90,7 @@ export default function Hero({ initialData }: HeroProps) {
             transition={{ duration: 0.6 }}
             className="badge-white mb-8"
           >
-            <VerifiedCheck className="w-4 h-4 text-green-500 shrink-0" />
+            <VerifiedCheck className="w-4 h-4 text-primary shrink-0" />
             <span className="hidden lg:inline">{badgeText}</span>
             <span className="lg:hidden">Favorite Show</span>
           </motion.div>
