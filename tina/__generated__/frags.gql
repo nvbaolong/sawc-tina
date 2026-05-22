@@ -1,11 +1,11 @@
 fragment HeroParts on Hero {
   __typename
-  buildStatus
   badgeText
   mainHeading
   subtext
   backgroundImage
   videoUrl
+  buildStatus
 }
 
 fragment TvShowParts on TvShow {

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
+import VercelDeployBadge from "@/components/VercelDeployBadge";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -39,8 +40,11 @@ export const metadata: Metadata = {
   },
 };
 
-import VercelDeployBadge from "@/components/VercelDeployBadge";
-
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <html lang="en">
       <body
@@ -51,3 +55,4 @@ import VercelDeployBadge from "@/components/VercelDeployBadge";
       </body>
     </html>
   );
+}

@@ -8,12 +8,12 @@ export function gql(strings, ...args) {
 export const HeroPartsFragmentDoc = gql`
     fragment HeroParts on Hero {
   __typename
-  buildStatus
   badgeText
   mainHeading
   subtext
   backgroundImage
   videoUrl
+  buildStatus
 }
     `;
 export const TvShowPartsFragmentDoc = gql`
@@ -256,7 +256,7 @@ const generateRequester = (client) => {
 export const ExperimentalGetTinaClient = () => getSdk(
   generateRequester(
     createClient({
-      url: "http://localhost:4001/graphql",
+      url: "https://content.tinajs.io/2.4/content/dummyclientid/github/main",
       queries
     })
   )

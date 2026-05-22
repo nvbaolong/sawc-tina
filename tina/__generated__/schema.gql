@@ -94,12 +94,12 @@ type Collection {
 union DocumentNode = Hero | TvShow | Event | Folder
 
 type Hero implements Node & Document {
-  buildStatus: String
   badgeText: String
   mainHeading: String
   subtext: String
   backgroundImage: String
   videoUrl: String
+  buildStatus: String
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
@@ -120,12 +120,12 @@ input ImageFilter {
 }
 
 input HeroFilter {
-  buildStatus: StringFilter
   badgeText: StringFilter
   mainHeading: StringFilter
   subtext: StringFilter
   backgroundImage: ImageFilter
   videoUrl: StringFilter
+  buildStatus: StringFilter
 }
 
 type HeroConnectionEdges {
@@ -259,12 +259,12 @@ input DocumentMutation {
 }
 
 input HeroMutation {
-  buildStatus: String
   badgeText: String
   mainHeading: String
   subtext: String
   backgroundImage: String
   videoUrl: String
+  buildStatus: String
 }
 
 input TvShowMutation {

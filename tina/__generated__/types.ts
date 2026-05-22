@@ -203,12 +203,12 @@ export type DocumentNode = Hero | TvShow | Event | Folder;
 
 export type Hero = Node & Document & {
   __typename?: 'Hero';
-  buildStatus?: Maybe<Scalars['String']['output']>;
   badgeText?: Maybe<Scalars['String']['output']>;
   mainHeading?: Maybe<Scalars['String']['output']>;
   subtext?: Maybe<Scalars['String']['output']>;
   backgroundImage?: Maybe<Scalars['String']['output']>;
   videoUrl?: Maybe<Scalars['String']['output']>;
+  buildStatus?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
   _sys: SystemInfo;
   _values: Scalars['JSON']['output'];
@@ -229,12 +229,12 @@ export type ImageFilter = {
 };
 
 export type HeroFilter = {
-  buildStatus?: InputMaybe<StringFilter>;
   badgeText?: InputMaybe<StringFilter>;
   mainHeading?: InputMaybe<StringFilter>;
   subtext?: InputMaybe<StringFilter>;
   backgroundImage?: InputMaybe<ImageFilter>;
   videoUrl?: InputMaybe<StringFilter>;
+  buildStatus?: InputMaybe<StringFilter>;
 };
 
 export type HeroConnectionEdges = {
@@ -446,12 +446,12 @@ export type DocumentMutation = {
 };
 
 export type HeroMutation = {
-  buildStatus?: InputMaybe<Scalars['String']['input']>;
   badgeText?: InputMaybe<Scalars['String']['input']>;
   mainHeading?: InputMaybe<Scalars['String']['input']>;
   subtext?: InputMaybe<Scalars['String']['input']>;
   backgroundImage?: InputMaybe<Scalars['String']['input']>;
   videoUrl?: InputMaybe<Scalars['String']['input']>;
+  buildStatus?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type TvShowMutation = {
@@ -477,7 +477,7 @@ export type EventMutation = {
   orderRank?: InputMaybe<Scalars['Float']['input']>;
 };
 
-export type HeroPartsFragment = { __typename: 'Hero', buildStatus?: string | null, badgeText?: string | null, mainHeading?: string | null, subtext?: string | null, backgroundImage?: string | null, videoUrl?: string | null };
+export type HeroPartsFragment = { __typename: 'Hero', badgeText?: string | null, mainHeading?: string | null, subtext?: string | null, backgroundImage?: string | null, videoUrl?: string | null, buildStatus?: string | null };
 
 export type TvShowPartsFragment = { __typename: 'TvShow', title: string, description?: string | null, image?: string | null, airDate?: string | null, videoUrl?: string | null, category?: string | null, orderRank?: number | null };
 
@@ -488,7 +488,7 @@ export type HeroQueryVariables = Exact<{
 }>;
 
 
-export type HeroQuery = { __typename?: 'Query', hero: { __typename: 'Hero', id: string, buildStatus?: string | null, badgeText?: string | null, mainHeading?: string | null, subtext?: string | null, backgroundImage?: string | null, videoUrl?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type HeroQuery = { __typename?: 'Query', hero: { __typename: 'Hero', id: string, badgeText?: string | null, mainHeading?: string | null, subtext?: string | null, backgroundImage?: string | null, videoUrl?: string | null, buildStatus?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
 export type HeroConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -500,7 +500,7 @@ export type HeroConnectionQueryVariables = Exact<{
 }>;
 
 
-export type HeroConnectionQuery = { __typename?: 'Query', heroConnection: { __typename?: 'HeroConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'HeroConnectionEdges', cursor: string, node?: { __typename: 'Hero', id: string, buildStatus?: string | null, badgeText?: string | null, mainHeading?: string | null, subtext?: string | null, backgroundImage?: string | null, videoUrl?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type HeroConnectionQuery = { __typename?: 'Query', heroConnection: { __typename?: 'HeroConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'HeroConnectionEdges', cursor: string, node?: { __typename: 'Hero', id: string, badgeText?: string | null, mainHeading?: string | null, subtext?: string | null, backgroundImage?: string | null, videoUrl?: string | null, buildStatus?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export type TvShowQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -543,12 +543,12 @@ export type EventConnectionQuery = { __typename?: 'Query', eventConnection: { __
 export const HeroPartsFragmentDoc = gql`
     fragment HeroParts on Hero {
   __typename
-  buildStatus
   badgeText
   mainHeading
   subtext
   backgroundImage
   videoUrl
+  buildStatus
 }
     `;
 export const TvShowPartsFragmentDoc = gql`
@@ -817,7 +817,7 @@ export const ExperimentalGetTinaClient = () =>
   getSdk(
     generateRequester(
       createClient({
-        url: "http://localhost:4001/graphql",
+        url: "https://content.tinajs.io/2.4/content/dummyclientid/github/main",
         queries,
       })
     )
