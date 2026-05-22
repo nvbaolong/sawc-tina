@@ -12,8 +12,8 @@ export default function FriendsWithBenefits() {
   const buttonText = "JOIN NOW";
   const buttonLink = "https://cosisfriendswithbenefits.com.au";
   const price = "$10";
-  const backgroundImage = "/uploads/assets/FwB.png";
-  const cosiImage = "/uploads/assets/014A1782_1.png";
+  const backgroundImage = "/assets/FwB.png";
+  const cosiImage = "/assets/014A1782_1.png";
   const card1Title = "Instant Rewards";
   const card1Description = "Grab \"Buy 1 Get 1 Free\" drinks and huge discounts at SA’s best pubs, wineries, and shops.";
   const card2Title = "Be First in Line";
