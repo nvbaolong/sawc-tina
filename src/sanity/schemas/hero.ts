@@ -1,4 +1,5 @@
 import { defineType, defineField } from "sanity";
+import { VideoTypeInput, VideoUrlInput, DEFAULT_YOUTUBE_URL } from "../components/VideoControl";
 
 export const hero = defineType({
   name: "hero",
@@ -34,35 +35,36 @@ export const hero = defineType({
     }),
     defineField({
       name: "videoType",
-      title: "Video Source",
+      title: "Chế độ Video (Video Source)",
       type: "string",
-      description: "Choose whether to use a YouTube link or upload a video file directly to Sanity",
       initialValue: "youtube",
-      options: {
-        list: [
-          { title: "YouTube Video URL", value: "youtube" },
-          { title: "Upload Video File (Host on Sanity)", value: "upload" },
-        ],
-        layout: "radio",
+      components: {
+        input: VideoTypeInput,
       },
     }),
     defineField({
       name: "videoUrl",
       title: "YouTube Video URL",
       type: "string",
-      description: "YouTube link for the 'Watch Video' button (e.g. https://www.youtube.com/watch?v=...)",
+      initialValue: DEFAULT_YOUTUBE_URL,
+      description: `Đường dẫn YouTube cho video Hero (Mặc định: ${DEFAULT_YOUTUBE_URL})`,
       hidden: ({ parent }) => parent?.videoType === "upload",
+      components: {
+        input: VideoUrlInput,
+      },
     }),
     defineField({
       name: "videoFile",
-      title: "Upload Video File",
+      title: "File Video Tải Lên (Sanity CDN)",
       type: "file",
-      description: "Upload video file (MP4, WebM, MOV) hosted directly on Sanity CDN",
+      description:
+        "Tải file video (MP4, WebM, MOV) lưu trữ trên Sanity CDN. Để xoá/gỡ video: bấm vào dấu 3 chấm (...) ở góc bên phải của file và chọn 'Clear'.",
       options: {
         accept: "video/*",
       },
-      hidden: ({ parent }) => parent?.videoType && parent?.videoType !== "upload",
+      hidden: ({ parent }) => parent?.videoType !== "upload",
     }),
   ],
 });
+
 

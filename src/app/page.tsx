@@ -43,7 +43,7 @@ export default async function Home() {
     subtext: "Join Cosi on a mission to showcase the best of South Australia. Experience adventure, travel, and local stories with SAWC.",
     backgroundImage: "/assets/FwB.png",
     videoType: "youtube",
-    videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+    videoUrl: "https://www.youtube.com/watch?v=QxQYOZdQGQ8"
   };
 
   return (

@@ -42,7 +42,7 @@ export default function Hero({ initialData }: HeroProps) {
 
   // Handle YouTube URL to Embed URL conversion
   const getEmbedUrl = (url: string) => {
-    if (!url) return "https://www.youtube.com/embed/H4VKPO4kXiE?autoplay=1";
+    if (!url) return "https://www.youtube.com/embed/QxQYOZdQGQ8?autoplay=1";
 
     // Simple regex to extract ID from common youtube links
     const regExp =
