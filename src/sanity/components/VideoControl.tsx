@@ -50,7 +50,7 @@ export function VideoTypeInput(props: StringInputProps) {
           icon={PlayIcon}
           mode={currentType === "youtube" ? "default" : "ghost"}
           tone={currentType === "youtube" ? "primary" : "default"}
-          text="1. Dùng YouTube Link"
+          text="1. YouTube Link"
           onClick={() => handleSelectType("youtube")}
         />
         <Button
@@ -66,15 +66,15 @@ export function VideoTypeInput(props: StringInputProps) {
           icon={ResetIcon}
           mode="ghost"
           tone="critical"
-          text="Reset về YouTube mặc định"
-          title={`Đặt lại về YouTube mặc định (${DEFAULT_YOUTUBE_URL})`}
+          text="Reset to Default YouTube"
+          title={`Reset to default YouTube video (${DEFAULT_YOUTUBE_URL})`}
           onClick={handleResetToDefault}
         />
       </Flex>
       <Text size={1} muted>
         {currentType === "youtube"
-          ? "Đang chọn: YouTube Video. Chỉ hiển thị ô nhập URL YouTube bên dưới."
-          : "Đang chọn: Upload Video. Chỉ hiển thị khung tải file video lên Sanity bên dưới."}
+          ? "Mode: YouTube Video. Displaying YouTube URL field below."
+          : "Mode: Upload Video. Displaying video upload box below."}
       </Text>
     </Stack>
   );
@@ -101,11 +101,11 @@ export function VideoUrlInput(props: StringInputProps) {
             tone="default"
             fontSize={1}
             padding={2}
-            text="Đặt lại URL YouTube gốc"
+            text="Reset to default URL"
             onClick={handleReset}
           />
           <Text size={1} muted>
-            Mặc định: {DEFAULT_YOUTUBE_URL}
+            Default: {DEFAULT_YOUTUBE_URL}
           </Text>
         </Flex>
       )}

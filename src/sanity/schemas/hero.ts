@@ -35,7 +35,7 @@ export const hero = defineType({
     }),
     defineField({
       name: "videoType",
-      title: "Chế độ Video (Video Source)",
+      title: "Video Source",
       type: "string",
       initialValue: "youtube",
       components: {
@@ -47,7 +47,7 @@ export const hero = defineType({
       title: "YouTube Video URL",
       type: "string",
       initialValue: DEFAULT_YOUTUBE_URL,
-      description: `Đường dẫn YouTube cho video Hero (Mặc định: ${DEFAULT_YOUTUBE_URL})`,
+      description: `YouTube video link for the 'Watch Video' button (Default: ${DEFAULT_YOUTUBE_URL})`,
       hidden: ({ parent }) => parent?.videoType === "upload",
       components: {
         input: VideoUrlInput,
@@ -55,10 +55,10 @@ export const hero = defineType({
     }),
     defineField({
       name: "videoFile",
-      title: "File Video Tải Lên (Sanity CDN)",
+      title: "Uploaded Video File (Sanity CDN)",
       type: "file",
       description:
-        "Tải file video (MP4, WebM, MOV) lưu trữ trên Sanity CDN. Để xoá/gỡ video: bấm vào dấu 3 chấm (...) ở góc bên phải của file và chọn 'Clear'.",
+        "Upload a video file (MP4, WebM, MOV) hosted on Sanity CDN. To remove an uploaded video: click the three dots (...) on the right side of the file and select 'Clear'.",
       options: {
         accept: "video/*",
       },
@@ -66,5 +66,3 @@ export const hero = defineType({
     }),
   ],
 });
-
-
