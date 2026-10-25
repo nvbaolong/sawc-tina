@@ -56,6 +56,11 @@ export default function Hero({ initialData }: HeroProps) {
   };
 
   const videoEmbedUrl = getEmbedUrl(initialData?.videoUrl || "");
+  const isUploadedVideo =
+    initialData?.videoType === "upload"
+      ? !!initialData?.videoFileUrl
+      : !initialData?.videoUrl && !!initialData?.videoFileUrl;
+  const uploadedVideoUrl = initialData?.videoFileUrl || "";
 
   // Helper to split heading for the <br /> if it matches the default or has a specific pattern
   const renderHeading = (text: string) => {
@@ -150,11 +155,13 @@ export default function Hero({ initialData }: HeroProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            onClick={() => setIsVideoOpen(false)}
             className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-sm p-4 md:p-8"
           >
             <button
               onClick={() => setIsVideoOpen(false)}
               className="absolute top-8 right-8 text-white/60 hover:text-white transition-colors z-[110]"
+              aria-label="Close video modal"
             >
               <CloseCircle className="w-10 h-10" />
             </button>
@@ -163,15 +170,26 @@ export default function Hero({ initialData }: HeroProps) {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              className="relative w-full max-w-5xl aspect-video rounded-2xl overflow-hidden shadow-2xl"
+              className="relative w-full max-w-5xl aspect-video rounded-2xl overflow-hidden shadow-2xl bg-black"
+              onClick={(e) => e.stopPropagation()}
             >
-              <iframe
-                src={videoEmbedUrl}
-                title="SAWC Video"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="absolute inset-0 w-full h-full border-0"
-              />
+              {isUploadedVideo ? (
+                <video
+                  src={uploadedVideoUrl}
+                  controls
+                  autoPlay
+                  playsInline
+                  className="w-full h-full object-contain"
+                />
+              ) : (
+                <iframe
+                  src={videoEmbedUrl}
+                  title="SAWC Video"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="absolute inset-0 w-full h-full border-0"
+                />
+              )}
             </motion.div>
           </motion.div>
         )}

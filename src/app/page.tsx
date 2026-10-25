@@ -21,7 +21,10 @@ export default async function Home() {
   try {
     const sanityClient = await getSanityClient();
     const [sanityHero, sanityTvShows, sanityEvents] = await Promise.all([
-      sanityClient.fetch<HeroContent | null>(`*[_type == "hero"][0]`),
+      sanityClient.fetch<HeroContent | null>(`*[_type == "hero"][0]{
+        ...,
+        "videoFileUrl": videoFile.asset->url
+      }`),
       sanityClient.fetch<TvShow[]>(`*[_type == "tvShow"] | order(orderRank asc, airDate desc)`),
       sanityClient.fetch<Event[]>(`*[_type == "event"] | order(orderRank asc, date asc)`),
     ]);
@@ -39,6 +42,7 @@ export default async function Home() {
     mainHeading: "G'Day, South Australia!",
     subtext: "Join Cosi on a mission to showcase the best of South Australia. Experience adventure, travel, and local stories with SAWC.",
     backgroundImage: "/assets/FwB.png",
+    videoType: "youtube",
     videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
   };
 

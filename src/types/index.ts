@@ -3,7 +3,10 @@ export interface HeroContent {
   mainHeading?: string
   subtext?: string
   backgroundImage?: any
+  videoType?: "youtube" | "upload"
   videoUrl?: string
+  videoFile?: any
+  videoFileUrl?: string
 }
 
 export interface TvShow {

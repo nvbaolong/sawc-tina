@@ -33,10 +33,36 @@ export const hero = defineType({
       },
     }),
     defineField({
-      name: "videoUrl",
-      title: "Video URL (YouTube)",
+      name: "videoType",
+      title: "Video Source",
       type: "string",
-      description: "YouTube link for the 'Watch Video' button",
+      description: "Choose whether to use a YouTube link or upload a video file directly to Sanity",
+      initialValue: "youtube",
+      options: {
+        list: [
+          { title: "YouTube Video URL", value: "youtube" },
+          { title: "Upload Video File (Host on Sanity)", value: "upload" },
+        ],
+        layout: "radio",
+      },
+    }),
+    defineField({
+      name: "videoUrl",
+      title: "YouTube Video URL",
+      type: "string",
+      description: "YouTube link for the 'Watch Video' button (e.g. https://www.youtube.com/watch?v=...)",
+      hidden: ({ parent }) => parent?.videoType === "upload",
+    }),
+    defineField({
+      name: "videoFile",
+      title: "Upload Video File",
+      type: "file",
+      description: "Upload video file (MP4, WebM, MOV) hosted directly on Sanity CDN",
+      options: {
+        accept: "video/*",
+      },
+      hidden: ({ parent }) => parent?.videoType && parent?.videoType !== "upload",
     }),
   ],
 });
+
